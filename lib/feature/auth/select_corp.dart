@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/CustomTextButton.dart';
@@ -46,6 +47,8 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
               ),
               Expanded(
                 child: ListView.builder(
+                    keyboardDismissBehavior:
+                        ScrollViewKeyboardDismissBehavior.onDrag,
                     itemCount: corpsList.length,
                     itemBuilder: (context, index) {
                       return Container(

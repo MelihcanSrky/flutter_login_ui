@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Center(
-          child: SelectCorpPage(),
+          child: LoginSelectPage(),
         ),
       ),
       theme: ThemeData(
