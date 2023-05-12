@@ -7,6 +7,7 @@ class Dimens {
   static const double margin_14 = 14.0;
   static const double margin_16 = 16.0;
   static const double margin_18 = 18.0;
+  static const double margin_20 = 20.0;
   static const double margin_24 = 24.0;
   static const double margin_28 = 28.0;
   static const double margin_32 = 32.0;

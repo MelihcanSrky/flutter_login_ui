@@ -18,4 +18,10 @@ mixin Strings {
   static const corpAdressToLogin = "Kurum adresi ile giriş yapın";
 
   static const continueText = "Devam";
+
+  static const selectCorp = "Kurum Seçimi";
+
+  static const sortByName = "İsme Göre Sırala";
+
+  static const sortByDest = "Mesafeye Göre Sırala";
 }

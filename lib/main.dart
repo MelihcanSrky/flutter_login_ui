@@ -3,6 +3,7 @@ import 'package:flutter_netigma_login/feature/auth/login_select.dart';
 import 'package:flutter_netigma_login/res/colors.dart';
 
 import 'feature/auth/login.dart';
+import 'feature/auth/select_corp.dart';
 
 void main() => runApp(const MyApp());
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Center(
-          child: LoginSelectPage(),
+          child: SelectCorpPage(),
         ),
       ),
       theme: ThemeData(

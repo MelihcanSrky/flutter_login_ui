@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_netigma_login/feature/auth/login.dart';
+import 'package:flutter_netigma_login/feature/auth/select_corp.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/CustomButton.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/CustomTextField.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/LoginDesc.dart';
@@ -51,7 +52,7 @@ class LoginSelectPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => LoginPage(),
+                              builder: (context) => SelectCorpPage(),
                             ),
                           );
                         },

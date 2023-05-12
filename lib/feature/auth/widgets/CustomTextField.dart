@@ -55,6 +55,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
           : false,
       style: CustomTypography.h4_regular,
       decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
         contentPadding: EdgeInsets.all(Dimens.margin_16),
         prefixIcon:
             widget.prefixIcon != null ? ImageIcon(widget.prefixIcon) : null,
