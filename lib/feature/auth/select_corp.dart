@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/CustomTextButton.dart';
@@ -45,76 +44,85 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
                   ),
                 ],
               ),
-              Expanded(
-                child: ListView.builder(
-                    keyboardDismissBehavior:
-                        ScrollViewKeyboardDismissBehavior.onDrag,
-                    itemCount: corpsList.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                            border: Border(
-                                top: BorderSide(
-                                    color: CustomColors.dividerGrey,
-                                    width: 1.0))),
-                        child: ListTile(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 0),
-                          leading: Container(
-                              padding: EdgeInsets.all(Dimens.margin_8),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  color: CustomColors.secondaryBlue),
-                              child: ImageIcon(
-                                AssetImage("assets/icons/location.png"),
-                                color: CustomColors.primaryBlue,
-                              )),
-                          title: Text(
-                            corpsList[index],
-                            style: CustomTypography.h5_semibold.copyWith(
-                                color: Color(0xFF232323),
-                                fontWeight: FontWeight.w500),
-                          ),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginPage(),
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    }),
-              )
+              buildListView()
             ],
           ),
         ));
   }
 
-  TextField buildSearchTextField() {
-    return TextField(
-      style: CustomTypography.h5_regular,
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(
-            vertical: Dimens.margin_14, horizontal: Dimens.margin_16),
-        prefixIcon: ImageIcon(
-          AssetImage("assets/icons/search-outline.png"),
-          color: Colors.black,
+  Expanded buildListView() {
+    return Expanded(
+      child: ListView.builder(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          itemCount: corpsList.length,
+          itemBuilder: (context, index) {
+            return buildListTile(index, context);
+          }),
+    );
+  }
+
+  Container buildListTile(int index, BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          border: Border(
+              top: BorderSide(color: CustomColors.dividerGrey, width: 1.0))),
+      child: ListTile(
+        contentPadding: EdgeInsets.symmetric(horizontal: 0),
+        leading: Container(
+            padding: EdgeInsets.all(Dimens.margin_8),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                color: CustomColors.secondaryBlue),
+            child: ImageIcon(
+              AssetImage("assets/icons/location.png"),
+              color: CustomColors.primaryBlue,
+            )),
+        title: Text(
+          corpsList[index],
+          style: CustomTypography.h5_semibold
+              .copyWith(color: Color(0xFF232323), fontWeight: FontWeight.w500),
         ),
-        label: Text("Arama yapın..."),
-        labelStyle: CustomTypography.h5_regular
-            .copyWith(color: CustomColors.secondaryText),
-        filled: true,
-        fillColor: Colors.white,
-        floatingLabelBehavior: FloatingLabelBehavior.never,
-        focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimens.margin_64),
-            borderSide:
-                BorderSide(color: CustomColors.dividerGrey, width: 1.0)),
-        enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimens.margin_64),
-            borderSide:
-                BorderSide(color: CustomColors.dividerGrey, width: 1.0)),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => LoginPage(),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget buildSearchTextField() {
+    return Material(
+      elevation: 2,
+      shadowColor: CustomColors.dividerGrey,
+      borderRadius: BorderRadius.circular(Dimens.margin_64),
+      child: TextField(
+        style: CustomTypography.h5_regular,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(
+              vertical: Dimens.margin_14, horizontal: Dimens.margin_16),
+          prefixIcon: ImageIcon(
+            AssetImage("assets/icons/search-outline.png"),
+            color: Colors.black,
+          ),
+          label: Text("Arama yapın..."),
+          labelStyle: CustomTypography.h5_regular
+              .copyWith(color: CustomColors.secondaryText),
+          filled: true,
+          fillColor: Colors.white,
+          floatingLabelBehavior: FloatingLabelBehavior.never,
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(Dimens.margin_64),
+              borderSide:
+                  BorderSide(color: CustomColors.dividerGrey, width: 1.0)),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(Dimens.margin_64),
+              borderSide:
+                  BorderSide(color: CustomColors.dividerGrey, width: 1.0)),
+        ),
       ),
     );
   }
