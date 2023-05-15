@@ -9,6 +9,7 @@ import 'package:flutter_netigma_login/res/colors.dart';
 import 'package:flutter_netigma_login/res/dimens.dart';
 import 'package:flutter_netigma_login/res/strings.dart';
 import 'package:flutter_netigma_login/res/typography.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -34,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           buildBackgroundImage(),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: Dimens.marginDefault),
+            padding: EdgeInsets.symmetric(horizontal: Dimens.marginDefault.w),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -42,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       SizedBox(
-                        height: Dimens.margin_60,
+                        height: Dimens.margin_60.h,
                       ),
                       Text(
                         Strings.login,
@@ -50,17 +51,17 @@ class _LoginPageState extends State<LoginPage> {
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(
-                        height: _height * 0.02,
+                        height: _height * 0.02.h,
                       ),
                       LoginDesc(descText: Strings.loginDesc),
                       SizedBox(
-                        height: Dimens.margin_24,
+                        height: Dimens.margin_24.h,
                       ),
                       CustomTextField(
                         labelText: Strings.userName,
                       ),
                       SizedBox(
-                        height: Dimens.margin_12,
+                        height: Dimens.margin_12.h,
                       ),
                       CustomTextField(
                         labelText: Strings.password,
@@ -68,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       buildRememberMe(),
                       SizedBox(
-                        height: _height * 0.02,
+                        height: _height * 0.02.h,
                       ),
                       CustomButton(
                         onPressed: () {},
@@ -86,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Padding buildPoweredBy() {
     return Padding(
-      padding: const EdgeInsets.all(Dimens.margin_14),
+      padding: EdgeInsets.all(Dimens.margin_14.r),
       child: Text(
         Strings.poweredBy,
         style: CustomTypography.h6_regular,
@@ -109,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Dimens.margin_8),
+          padding: EdgeInsets.symmetric(horizontal: Dimens.margin_8.w),
           child: Text(
             Strings.rememberMe,
             style: CustomTypography.h5_semibold.copyWith(
@@ -142,13 +143,13 @@ class _LoginPageState extends State<LoginPage> {
             Navigator.pop(context);
           }),
       title: Text('netigma', style: CustomTypography.h3),
-      toolbarHeight: _height * 0.1,
+      toolbarHeight: _height * 0.1.h,
       bottom: PreferredSize(
         child: Container(
           color: CustomColors.dividerGrey,
-          height: 1.0,
+          height: 1.0.h,
         ),
-        preferredSize: Size.fromHeight(1.0),
+        preferredSize: Size.fromHeight(1.0.h),
       ),
     );
   }

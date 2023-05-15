@@ -20,10 +20,17 @@ class LightTheme extends ApplicationTheme
 
   @override
   ThemeData get theme => ThemeData.light().copyWith(
-        scaffoldBackgroundColor: whiteLightActive,
+        scaffoldBackgroundColor: white,
         primaryColor: bluePrimary,
-        primaryTextTheme: GoogleFonts.poppinsTextTheme(
-            ThemeData.light().primaryTextTheme.copyWith(bodyText1: h4Regular)),
+        primaryTextTheme: GoogleFonts.poppinsTextTheme(ThemeData.light()
+            .primaryTextTheme
+            .copyWith(
+              bodyText1: h4Regular,
+            )
+            .apply(
+              bodyColor: blackLight,
+              displayColor: black,
+            )),
         buttonTheme: ThemeData.light().buttonTheme.copyWith(
               textTheme: ButtonTextTheme.primary,
             ),
@@ -100,10 +107,10 @@ class LightTheme extends ApplicationTheme
               bodyMedium: h6Regular,
               bodySmall: specialRegular,
               displayLarge: h5Medium),
-        ).apply(bodyColor: greyDark, displayColor: black),
+        ).apply(bodyColor: greyMedium, displayColor: black),
         inputDecorationTheme: InputDecorationTheme(
           fillColor: white,
-          floatingLabelBehavior: FloatingLabelBehavior.never,
+          floatingLabelBehavior: FloatingLabelBehavior.auto,
           filled: true,
           focusColor: white,
           contentPadding:
@@ -127,8 +134,7 @@ class LightTheme extends ApplicationTheme
           hintStyle: h5Regular.copyWith(color: greyMedium),
         ),
         listTileTheme: ThemeData.light().listTileTheme.copyWith(
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 16.w, vertical: 17.5.h),
+              contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0).r,
               ),

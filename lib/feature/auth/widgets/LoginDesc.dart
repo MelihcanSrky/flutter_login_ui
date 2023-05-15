@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_netigma_login/theme/light/light_theme.dart';
+import 'package:flutter_netigma_login/theme/theme_notifer.dart';
+import 'package:provider/provider.dart';
 
 import '../../../res/colors.dart';
 import '../../../res/dimens.dart';
@@ -18,8 +21,9 @@ class LoginDesc extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: Dimens.margin_16),
       child: Text(
         descText,
-        style: CustomTypography.h5_regular
-            .copyWith(color: CustomColors.secondaryText),
+        style: Theme.of(context).textTheme.titleMedium,
+        // style: CustomTypography.h5_regular
+        //     .copyWith(color: CustomColors.secondaryText),
         textAlign: TextAlign.center,
       ),
     );

@@ -21,9 +21,9 @@ class _CustomButtonState extends State<CustomButton> {
       onPressed: widget.onPressed,
       child: Padding(
         padding: const EdgeInsets.all(Dimens.margin_12),
-        child: Text(widget.text,
-            style: CustomTypography.h5_semibold
-                .copyWith(color: Colors.white, fontWeight: FontWeight.w500)),
+        child: Text(
+          widget.text,
+        ),
       ),
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.primaryBlue),

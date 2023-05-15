@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_netigma_login/res/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomTypography {
@@ -53,8 +54,8 @@ class CustomTypography {
       textStyle: TextStyle(
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.w400,
-    fontSize: 14,
-    height: 21 / 14,
+    fontSize: 14.sp,
+    height: 21.sp / 14.sp,
     color: CustomColors.primaryText,
   ));
   static TextStyle special_semibold = GoogleFonts.poppins(

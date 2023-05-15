@@ -29,12 +29,10 @@ class CustomTextButton extends StatelessWidget {
           icon,
           color: CustomColors.primaryBlue,
         ),
-        label: Text(
-          text,
-          style: CustomTypography.h5_semibold.copyWith(
-            color: CustomColors.primaryBlue,
-            fontWeight: FontWeight.w500,
-          ),
-        ));
+        label: Text(text,
+            style: Theme.of(context)
+                .textTheme
+                .labelMedium!
+                .copyWith(color: CustomColors.primaryBlue)));
   }
 }
