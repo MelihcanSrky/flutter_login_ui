@@ -129,7 +129,9 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
 
   AppBar buildAppbar(double _height) {
     return AppBar(
-      systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.white),
+      systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.white,
+          statusBarIconBrightness: Brightness.dark),
       centerTitle: true,
       leading: IconButton(
           icon: const ImageIcon(AssetImage("assets/icons/arrow-left.png")),
