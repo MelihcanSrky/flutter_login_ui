@@ -21,6 +21,15 @@ class CustomTextField extends StatefulWidget {
   /// Text Editing Controller
   final TextEditingController? controller;
 
+  /// Border Radius
+  final double borderRadius;
+
+  /// Floating Label Behavior true = auto / false = never
+  final bool floatingLabelBehavior;
+
+  /// Prefix icon color
+  final Color prefixIconColor;
+
   /// Şifre alanı mı değil mi
   /// Şifre alanıysa suffixIcon otomatik gösterilir
   /// suffix icon eklenmez
@@ -33,7 +42,10 @@ class CustomTextField extends StatefulWidget {
       this.prefixIcon,
       this.isPassword,
       this.controller,
-      this.suffixIconOnPressed});
+      this.suffixIconOnPressed,
+      this.borderRadius = Dimens.borderRadiusDefault,
+      this.floatingLabelBehavior = true,
+      this.prefixIconColor = CustomColors.primaryBlue});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -54,7 +66,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
       obscureText: widget.isPassword != null && widget.isPassword!
           ? isPasswordLock
           : false,
-      style: CustomTypography.h4_regular,
+      style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+            color: Theme.of(context).primaryColorDark,
+          ),
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
@@ -64,7 +78,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
         prefixIcon:
             widget.prefixIcon != null ? ImageIcon(widget.prefixIcon) : null,
-        prefixIconColor: CustomColors.primaryBlue,
+        prefixIconColor: widget.prefixIconColor,
         suffixIcon: widget.isPassword != null && widget.isPassword!
             ? IconButton(
                 icon: isPasswordLock
@@ -91,23 +105,26 @@ class _CustomTextFieldState extends State<CustomTextField> {
         suffixIconColor: widget.isPassword != null && widget.isPassword!
             ? isPasswordLock
                 ? CustomColors.secondaryText
-                : CustomColors.primaryText
+                : Theme.of(context).primaryColorDark
             : CustomColors.secondaryText,
         labelText: (widget.labelText),
+        floatingLabelBehavior: widget.floatingLabelBehavior
+            ? FloatingLabelBehavior.auto
+            : FloatingLabelBehavior.never,
         floatingLabelStyle: CustomTypography.special_semibold.copyWith(
-          color: CustomColors.primaryBlue,
+          color: Theme.of(context).primaryColor,
           fontWeight: FontWeight.w500,
         ),
         labelStyle: Theme.of(context).textTheme.titleMedium,
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Dimens.borderRadiusDefault),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: BorderSide(
-            color: CustomColors.primaryBlue,
+            color: Theme.of(context).primaryColor,
             width: 1.0.w,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Dimens.borderRadiusDefault),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: BorderSide(
             color: CustomColors.dividerGrey,
             width: 1.0.w,

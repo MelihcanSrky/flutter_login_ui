@@ -93,7 +93,10 @@ class LoginSelectPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(bottom: Dimens.margin_18.h),
-                    child: Image.asset("assets/images/netcad-logo.png"),
+                    child: Image.asset(
+                      "assets/images/netcad-logo.png",
+                      height: Dimens.margin_24.h,
+                    ),
                   )
                 ],
               ),
@@ -128,15 +131,17 @@ class CustomDividerWithText extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(
-          child: Divider(
-            height: 2.h,
-            thickness: 1.h,
-            color: CustomColors.dividerGrey,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: Dimens.margin_10.w),
+            child: Divider(
+              height: 2.h,
+              thickness: 1.h,
+              color: CustomColors.dividerGrey,
+            ),
           ),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: Dimens.margin_10.w, vertical: Dimens.margin_10.h),
+          padding: EdgeInsets.symmetric(vertical: Dimens.margin_10.h),
           child: Text(
             text,
             style: Theme.of(context)
@@ -146,10 +151,13 @@ class CustomDividerWithText extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: Divider(
-            height: 2.h,
-            thickness: 1.h,
-            color: CustomColors.dividerGrey,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: Dimens.margin_10.w),
+            child: Divider(
+              height: 2.h,
+              thickness: 1.h,
+              color: CustomColors.dividerGrey,
+            ),
           ),
         ),
       ],

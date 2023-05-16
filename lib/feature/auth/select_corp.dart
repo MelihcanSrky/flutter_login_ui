@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/CustomTextButton.dart';
+import 'package:flutter_netigma_login/feature/auth/widgets/CustomTextField.dart';
 import 'package:flutter_netigma_login/res/mock_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -74,7 +74,6 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
           border: Border(
               top: BorderSide(color: CustomColors.dividerGrey, width: 1.w))),
       child: ListTile(
-        contentPadding: EdgeInsets.symmetric(vertical: 16.h),
         leading: Material(
           elevation: 3,
           shadowColor: CustomColors.dividerGrey,
@@ -87,6 +86,7 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
                   color: CustomColors.secondaryBlue),
               child: ImageIcon(
                 AssetImage("assets/icons/location.png"),
+                size: Dimens.margin_20,
                 color: CustomColors.primaryBlue,
               )),
         ),
@@ -114,17 +114,12 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
       elevation: 2,
       shadowColor: CustomColors.dividerGrey,
       borderRadius: BorderRadius.circular(Dimens.margin_64),
-      child: TextField(
-        // style: CustomTypography.h5_regular,
-        decoration: InputDecoration(
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          prefixIcon: ImageIcon(
-            AssetImage("assets/icons/search-outline.png"),
-            color: Colors.black,
-          ),
-          label: Text("Arama yapın..."),
-          labelStyle: Theme.of(context).textTheme.titleMedium,
-        ),
+      child: CustomTextField(
+        labelText: "Arama yapın...",
+        prefixIcon: AssetImage("assets/icons/search-outline.png"),
+        borderRadius: 100,
+        floatingLabelBehavior: false,
+        prefixIconColor: Theme.of(context).primaryColorDark,
       ),
     );
   }
@@ -136,7 +131,9 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
           onPressed: () {
             Navigator.pop(context);
           }),
-      title: Text(Strings.selectCorp, style: CustomTypography.h3),
+      title: Text(Strings.selectCorp,
+          style: CustomTypography.h3
+              .copyWith(color: Theme.of(context).primaryColorDark)),
       toolbarHeight: _height * 0.1.h,
     );
   }

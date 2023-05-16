@@ -19,7 +19,7 @@ class LoginDesc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: Dimens.margin_16.w),
+      padding: EdgeInsets.symmetric(horizontal: Dimens.margin_24.w),
       child: Text(
         descText,
         style: Theme.of(context).textTheme.titleMedium,

@@ -30,7 +30,8 @@ class _CustomButtonState extends State<CustomButton> {
                 .copyWith(color: Theme.of(context).backgroundColor)),
       ),
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(CustomColors.primaryBlue),
+        backgroundColor:
+            MaterialStateProperty.all(Theme.of(context).primaryColor),
         elevation: MaterialStateProperty.all(0),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0))),
