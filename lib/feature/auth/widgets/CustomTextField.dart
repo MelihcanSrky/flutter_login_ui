@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_netigma_login/res/typography.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../res/colors.dart';
 import '../../../res/dimens.dart';
@@ -10,10 +11,10 @@ class CustomTextField extends StatefulWidget {
   final String labelText;
 
   /// Sol tarafta bulunan icon
-  final AssetImage? prefixIcon;
+  final String? prefixIcon;
 
   /// Sağ tarafta bulunan icon
-  final AssetImage? suffixIcon;
+  final String? suffixIcon;
 
   /// Sağ tarafta bulunan icona tıklandığında çalışacak fonksiyon
   final Function()? suffixIconOnPressed;
@@ -76,17 +77,25 @@ class _CustomTextFieldState extends State<CustomTextField> {
           horizontal: Dimens.margin_16.w,
           vertical: Dimens.margin_16.h,
         ),
-        prefixIcon:
-            widget.prefixIcon != null ? ImageIcon(widget.prefixIcon) : null,
+        prefixIcon: widget.prefixIcon != null
+            ? IconButton(
+                iconSize: Dimens.margin_24.h,
+                onPressed: null,
+                icon: SvgPicture.asset(
+                  widget.prefixIcon!,
+                  color: widget.prefixIconColor,
+                ))
+            : null,
         prefixIconColor: widget.prefixIconColor,
         suffixIcon: widget.isPassword != null && widget.isPassword!
             ? IconButton(
+                iconSize: Dimens.margin_24.h,
                 icon: isPasswordLock
-                    ? ImageIcon(
-                        AssetImage("assets/icons/eye-slash.png"),
+                    ? SvgPicture.asset(
+                        "assets/icons/eye-slash.svg",
                       )
-                    : ImageIcon(
-                        AssetImage("assets/icons/eye.png"),
+                    : SvgPicture.asset(
+                        "assets/icons/eye.svg",
                       ),
                 onPressed: () {
                   setState(() {
@@ -96,7 +105,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
               )
             : widget.suffixIcon != null
                 ? IconButton(
-                    icon: ImageIcon(widget.suffixIcon),
+                    iconSize: Dimens.margin_24.h,
+                    icon: SvgPicture.asset(
+                      widget.suffixIcon!,
+                      color: Theme.of(context).primaryColorLight,
+                    ),
                     onPressed: widget.suffixIconOnPressed != null
                         ? widget.suffixIconOnPressed
                         : null,

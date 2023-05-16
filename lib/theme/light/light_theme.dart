@@ -143,6 +143,7 @@ class LightTheme extends ApplicationTheme
               const Radius.circular(100).r,
             ),
           ),
+          prefixIconColor: bluePrimary,
           focusedBorder: _defaultInputBorder(),
           errorBorder: OutlineInputBorder(
             borderSide: BorderSide(color: greyLight),
@@ -156,7 +157,8 @@ class LightTheme extends ApplicationTheme
           hintStyle: h5Regular.copyWith(color: greyMedium),
         ),
         listTileTheme: ThemeData.light().listTileTheme.copyWith(
-              contentPadding: EdgeInsets.symmetric(vertical: 6.h),
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 1.w, vertical: 6.h),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0).r,
               ),

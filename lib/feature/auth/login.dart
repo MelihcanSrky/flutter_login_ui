@@ -8,6 +8,7 @@ import 'package:flutter_netigma_login/res/dimens.dart';
 import 'package:flutter_netigma_login/res/strings.dart';
 import 'package:flutter_netigma_login/res/typography.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -96,10 +97,12 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Positioned buildBackgroundImage() {
+    double _width = MediaQuery.of(context).size.width;
     return Positioned(
       child: Image.asset(
         "assets/images/illustration.png",
         fit: BoxFit.fitWidth,
+        width: _width,
       ),
       bottom: 0,
     );
@@ -139,7 +142,9 @@ class _LoginPageState extends State<LoginPage> {
       ),
       centerTitle: true,
       leading: IconButton(
-          icon: const ImageIcon(AssetImage("assets/icons/arrow-left.png")),
+          icon: SvgPicture.asset(
+            "assets/icons/arrow-left.svg",
+          ),
           onPressed: () {
             Navigator.pop(context);
           }),

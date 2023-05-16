@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../res/dimens.dart';
 
 class CustomTextButton extends StatelessWidget {
   /// Asset image icon
-  final AssetImage icon;
+  final String icon;
 
   /// Text
   final String text;
@@ -23,10 +24,7 @@ class CustomTextButton extends StatelessWidget {
             padding: EdgeInsets.symmetric(
                 horizontal: 0, vertical: Dimens.margin_14.h)),
         onPressed: () {},
-        icon: ImageIcon(
-          icon,
-          color: Theme.of(context).primaryColor,
-        ),
+        icon: SvgPicture.asset(icon, color: Theme.of(context).primaryColor),
         label: Text(text,
             style: Theme.of(context)
                 .textTheme

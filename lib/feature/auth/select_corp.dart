@@ -3,6 +3,7 @@ import 'package:flutter_netigma_login/feature/auth/widgets/CustomTextButton.dart
 import 'package:flutter_netigma_login/feature/auth/widgets/CustomTextField.dart';
 import 'package:flutter_netigma_login/res/mock_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../res/colors.dart';
 import '../../res/dimens.dart';
@@ -36,11 +37,11 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomTextButton(
-                    icon: AssetImage("assets/icons/sort.png"),
+                    icon: "assets/icons/sort.svg",
                     text: Strings.sortByName,
                   ),
                   CustomTextButton(
-                    icon: AssetImage("assets/icons/candle-outline.png"),
+                    icon: "assets/icons/candle-outline.svg",
                     text: Strings.sortByDest,
                   ),
                 ],
@@ -73,21 +74,19 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
                   color: Theme.of(context).dividerColor, width: 1.w))),
       child: ListTile(
         leading: Material(
-          elevation: 3,
-          shadowColor: Theme.of(context).dividerColor,
-          borderRadius: BorderRadius.circular(Dimens.margin_8.r),
-          child: Container(
+            elevation: 3,
+            shadowColor: Theme.of(context).dividerColor,
+            borderRadius: BorderRadius.circular(Dimens.margin_8.r),
+            child: Container(
               padding: EdgeInsets.symmetric(
                   horizontal: Dimens.margin_8.w, vertical: Dimens.margin_8.h),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimens.margin_8.r),
                   color: Theme.of(context).cardColor),
-              child: ImageIcon(
-                AssetImage("assets/icons/location.png"),
-                size: Dimens.margin_20.h,
-                color: Theme.of(context).primaryColor,
-              )),
-        ),
+              child: SvgPicture.asset(
+                "assets/icons/location.svg",
+              ),
+            )),
         title: Text(
           corpsList[index],
           style: Theme.of(context)
@@ -114,7 +113,7 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
       borderRadius: BorderRadius.circular(Dimens.margin_64),
       child: CustomTextField(
         labelText: "Arama yapın...",
-        prefixIcon: AssetImage("assets/icons/search-outline.png"),
+        prefixIcon: "assets/icons/search-outline.svg",
         borderRadius: 100,
         floatingLabelBehavior: false,
         prefixIconColor: Theme.of(context).primaryColorDark,
@@ -125,7 +124,9 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
   AppBar buildAppbar(double _height) {
     return AppBar(
       leading: IconButton(
-          icon: const ImageIcon(AssetImage("assets/icons/arrow-left.png")),
+          icon: SvgPicture.asset(
+            "assets/icons/arrow-left.svg",
+          ),
           onPressed: () {
             Navigator.pop(context);
           }),

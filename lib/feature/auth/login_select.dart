@@ -7,10 +7,16 @@ import 'package:flutter_netigma_login/res/colors.dart';
 import 'package:flutter_netigma_login/res/dimens.dart';
 import 'package:flutter_netigma_login/res/strings.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class LoginSelectPage extends StatelessWidget {
+class LoginSelectPage extends StatefulWidget {
   const LoginSelectPage({super.key});
 
+  @override
+  State<LoginSelectPage> createState() => _LoginSelectPageState();
+}
+
+class _LoginSelectPageState extends State<LoginSelectPage> {
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
@@ -44,9 +50,8 @@ class LoginSelectPage extends StatelessWidget {
                       ),
                       CustomTextField(
                         labelText: Strings.selectCorpToLogin,
-                        prefixIcon: AssetImage("assets/icons/buildings-2.png"),
-                        suffixIcon:
-                            AssetImage("assets/icons/arrow-circle-right.png"),
+                        prefixIcon: "assets/icons/buildings-2.svg",
+                        suffixIcon: "assets/icons/arrow-circle-right.svg",
                         suffixIconOnPressed: () {
                           Navigator.push(
                             context,
@@ -65,7 +70,7 @@ class LoginSelectPage extends StatelessWidget {
                       ),
                       CustomTextField(
                         labelText: Strings.corpCodeToLogin,
-                        prefixIcon: AssetImage("assets/icons/code-circle.png"),
+                        prefixIcon: "assets/icons/code-circle.svg",
                       ),
                       SizedBox(
                         height: Dimens.margin_8.h,
@@ -76,9 +81,8 @@ class LoginSelectPage extends StatelessWidget {
                       ),
                       CustomTextField(
                         labelText: Strings.corpAdressToLogin,
-                        prefixIcon:
-                            AssetImage("assets/icons/global-search.png"),
-                        suffixIcon: AssetImage("assets/icons/scan-barcode.png"),
+                        prefixIcon: "assets/icons/global-search.svg",
+                        suffixIcon: "assets/icons/scan-barcode.svg",
                       ),
                       SizedBox(
                         height: Dimens.margin_24.h,
@@ -106,10 +110,12 @@ class LoginSelectPage extends StatelessWidget {
   }
 
   Positioned buildBackgroundImage() {
+    double _width = MediaQuery.of(context).size.width;
     return Positioned(
       child: Image.asset(
         "assets/images/login-select-bg.png",
         fit: BoxFit.fitWidth,
+        width: _width,
       ),
       bottom: 0,
     );
