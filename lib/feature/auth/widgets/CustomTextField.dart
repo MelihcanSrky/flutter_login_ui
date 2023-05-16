@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_netigma_login/res/typography.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../res/colors.dart';
 import '../../../res/dimens.dart';
@@ -57,7 +58,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
-        contentPadding: EdgeInsets.all(Dimens.margin_16),
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: Dimens.margin_16.w,
+          vertical: Dimens.margin_16.h,
+        ),
         prefixIcon:
             widget.prefixIcon != null ? ImageIcon(widget.prefixIcon) : null,
         prefixIconColor: CustomColors.primaryBlue,
@@ -94,20 +98,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
           color: CustomColors.primaryBlue,
           fontWeight: FontWeight.w500,
         ),
-        labelStyle: CustomTypography.h5_regular
-            .copyWith(color: CustomColors.secondaryText),
+        labelStyle: Theme.of(context).textTheme.titleMedium,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(Dimens.borderRadiusDefault),
           borderSide: BorderSide(
             color: CustomColors.primaryBlue,
-            width: 1.0,
+            width: 1.0.w,
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(Dimens.borderRadiusDefault),
           borderSide: BorderSide(
             color: CustomColors.dividerGrey,
-            width: 1.0,
+            width: 1.0.w,
           ),
         ),
       ),

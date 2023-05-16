@@ -8,6 +8,7 @@ import 'package:flutter_netigma_login/res/colors.dart';
 import 'package:flutter_netigma_login/res/dimens.dart';
 import 'package:flutter_netigma_login/res/strings.dart';
 import 'package:flutter_netigma_login/res/typography.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginSelectPage extends StatelessWidget {
   const LoginSelectPage({super.key});
@@ -22,7 +23,7 @@ class LoginSelectPage extends StatelessWidget {
           children: [
             buildBackgroundImage(),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: Dimens.marginDefault),
+              padding: EdgeInsets.symmetric(horizontal: Dimens.marginDefault.w),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -30,18 +31,18 @@ class LoginSelectPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       SizedBox(
-                        height: _height * 0.1,
+                        height: _height * 0.1.h,
                       ),
                       Image.asset(
                         "assets/images/netigma-logo.png",
-                        height: Dimens.margin_48,
+                        height: Dimens.margin_48.h,
                       ),
                       SizedBox(
-                        height: Dimens.margin_16,
+                        height: Dimens.margin_16.h,
                       ),
                       LoginDesc(descText: Strings.loginSelectDesc),
                       SizedBox(
-                        height: Dimens.margin_24,
+                        height: Dimens.margin_24.h,
                       ),
                       CustomTextField(
                         labelText: Strings.selectCorpToLogin,
@@ -58,22 +59,22 @@ class LoginSelectPage extends StatelessWidget {
                         },
                       ),
                       SizedBox(
-                        height: Dimens.margin_8,
+                        height: Dimens.margin_8.h,
                       ),
                       CustomDividerWithText(text: "ya da"),
                       SizedBox(
-                        height: Dimens.margin_8,
+                        height: Dimens.margin_8.h,
                       ),
                       CustomTextField(
                         labelText: Strings.corpCodeToLogin,
                         prefixIcon: AssetImage("assets/icons/code-circle.png"),
                       ),
                       SizedBox(
-                        height: Dimens.margin_8,
+                        height: Dimens.margin_8.h,
                       ),
                       CustomDividerWithText(text: "ya da"),
                       SizedBox(
-                        height: Dimens.margin_8,
+                        height: Dimens.margin_8.h,
                       ),
                       CustomTextField(
                         labelText: Strings.corpAdressToLogin,
@@ -82,7 +83,7 @@ class LoginSelectPage extends StatelessWidget {
                         suffixIcon: AssetImage("assets/icons/scan-barcode.png"),
                       ),
                       SizedBox(
-                        height: Dimens.margin_24,
+                        height: Dimens.margin_24.h,
                       ),
                       CustomButton(
                         onPressed: () {},
@@ -91,7 +92,7 @@ class LoginSelectPage extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.only(bottom: Dimens.margin_18),
+                    padding: EdgeInsets.only(bottom: Dimens.margin_18.h),
                     child: Image.asset("assets/images/netcad-logo.png"),
                   )
                 ],
@@ -128,23 +129,26 @@ class CustomDividerWithText extends StatelessWidget {
       children: [
         Expanded(
           child: Divider(
-            height: 2,
-            thickness: 1,
+            height: 2.h,
+            thickness: 1.h,
             color: CustomColors.dividerGrey,
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(Dimens.margin_10),
+          padding: EdgeInsets.symmetric(
+              horizontal: Dimens.margin_10.w, vertical: Dimens.margin_10.h),
           child: Text(
             text,
-            style:
-                CustomTypography.h5_regular.copyWith(color: Color(0xFF232323)),
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(color: Theme.of(context).primaryColorDark),
           ),
         ),
         Expanded(
           child: Divider(
-            height: 2,
-            thickness: 1,
+            height: 2.h,
+            thickness: 1.h,
             color: CustomColors.dividerGrey,
           ),
         ),

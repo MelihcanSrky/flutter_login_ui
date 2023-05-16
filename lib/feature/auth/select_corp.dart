@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/CustomTextButton.dart';
 import 'package:flutter_netigma_login/res/mock_data.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../res/colors.dart';
 import '../../res/dimens.dart';
@@ -24,13 +25,16 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
         resizeToAvoidBottomInset: false,
         appBar: buildAppbar(_height),
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: Dimens.margin_16),
+          padding: EdgeInsets.symmetric(horizontal: Dimens.margin_16.w),
           child: Column(
             children: [
               SizedBox(
-                height: Dimens.margin_16,
+                height: Dimens.margin_16.h,
               ),
               buildSearchTextField(),
+              SizedBox(
+                height: Dimens.margin_8.h,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -43,6 +47,9 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
                     text: Strings.sortByDest,
                   ),
                 ],
+              ),
+              SizedBox(
+                height: Dimens.margin_8.h,
               ),
               buildListView()
             ],
@@ -65,22 +72,30 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
     return Container(
       decoration: BoxDecoration(
           border: Border(
-              top: BorderSide(color: CustomColors.dividerGrey, width: 1.0))),
+              top: BorderSide(color: CustomColors.dividerGrey, width: 1.w))),
       child: ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 0),
-        leading: Container(
-            padding: EdgeInsets.all(Dimens.margin_8),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-                color: CustomColors.secondaryBlue),
-            child: ImageIcon(
-              AssetImage("assets/icons/location.png"),
-              color: CustomColors.primaryBlue,
-            )),
+        contentPadding: EdgeInsets.symmetric(vertical: 16.h),
+        leading: Material(
+          elevation: 3,
+          shadowColor: CustomColors.dividerGrey,
+          borderRadius: BorderRadius.circular(Dimens.margin_8.r),
+          child: Container(
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimens.margin_8.w, vertical: Dimens.margin_8.h),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimens.margin_8.r),
+                  color: CustomColors.secondaryBlue),
+              child: ImageIcon(
+                AssetImage("assets/icons/location.png"),
+                color: CustomColors.primaryBlue,
+              )),
+        ),
         title: Text(
           corpsList[index],
-          style: CustomTypography.h5_semibold
-              .copyWith(color: Color(0xFF232323), fontWeight: FontWeight.w500),
+          style: Theme.of(context)
+              .textTheme
+              .labelMedium!
+              .copyWith(color: Theme.of(context).primaryColorDark),
         ),
         onTap: () {
           Navigator.push(
@@ -100,28 +115,15 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
       shadowColor: CustomColors.dividerGrey,
       borderRadius: BorderRadius.circular(Dimens.margin_64),
       child: TextField(
-        style: CustomTypography.h5_regular,
+        // style: CustomTypography.h5_regular,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(
-              vertical: Dimens.margin_14, horizontal: Dimens.margin_16),
+          floatingLabelBehavior: FloatingLabelBehavior.never,
           prefixIcon: ImageIcon(
             AssetImage("assets/icons/search-outline.png"),
             color: Colors.black,
           ),
           label: Text("Arama yapın..."),
-          labelStyle: CustomTypography.h5_regular
-              .copyWith(color: CustomColors.secondaryText),
-          filled: true,
-          fillColor: Colors.white,
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimens.margin_64),
-              borderSide:
-                  BorderSide(color: CustomColors.dividerGrey, width: 1.0)),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimens.margin_64),
-              borderSide:
-                  BorderSide(color: CustomColors.dividerGrey, width: 1.0)),
+          labelStyle: Theme.of(context).textTheme.titleMedium,
         ),
       ),
     );
@@ -129,22 +131,13 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
 
   AppBar buildAppbar(double _height) {
     return AppBar(
-      systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.white),
-      centerTitle: true,
       leading: IconButton(
           icon: const ImageIcon(AssetImage("assets/icons/arrow-left.png")),
           onPressed: () {
             Navigator.pop(context);
           }),
       title: Text(Strings.selectCorp, style: CustomTypography.h3),
-      toolbarHeight: _height * 0.1,
-      bottom: PreferredSize(
-        child: Container(
-          color: CustomColors.dividerGrey,
-          height: 1.0,
-        ),
-        preferredSize: Size.fromHeight(1.0),
-      ),
+      toolbarHeight: _height * 0.1.h,
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class Dimens {
   //Margin - Padding
   static const double marginDefault = 30.0;
