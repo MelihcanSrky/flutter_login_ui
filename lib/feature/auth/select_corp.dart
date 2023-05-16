@@ -81,11 +81,11 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
                   horizontal: Dimens.margin_8.w, vertical: Dimens.margin_8.h),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimens.margin_8.r),
-                  color: CustomColors.secondaryBlue),
+                  color: Theme.of(context).cardColor),
               child: ImageIcon(
                 AssetImage("assets/icons/location.png"),
                 size: Dimens.margin_20.h,
-                color: CustomColors.primaryBlue,
+                color: Theme.of(context).primaryColor,
               )),
         ),
         title: Text(

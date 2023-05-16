@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         Switch.adaptive(
             activeColor: Theme.of(context).primaryColor,
-            inactiveTrackColor: CustomColors.secondaryText,
+            inactiveTrackColor: Theme.of(context).primaryColorLight,
             value: _isRemember,
             onChanged: (value) {
               setState(() {

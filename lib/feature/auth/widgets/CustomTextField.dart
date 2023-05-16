@@ -104,9 +104,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 : null,
         suffixIconColor: widget.isPassword != null && widget.isPassword!
             ? isPasswordLock
-                ? CustomColors.secondaryText
+                ? Theme.of(context).primaryColorLight
                 : Theme.of(context).primaryColorDark
-            : CustomColors.secondaryText,
+            : Theme.of(context).primaryColorLight,
         labelText: (widget.labelText),
         floatingLabelBehavior: widget.floatingLabelBehavior
             ? FloatingLabelBehavior.auto
