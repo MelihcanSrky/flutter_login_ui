@@ -109,7 +109,7 @@ class LoginSelectPage extends StatelessWidget {
     return Positioned(
       child: Image.asset(
         "assets/images/login-select-bg.png",
-        fit: BoxFit.contain,
+        fit: BoxFit.fitWidth,
       ),
       bottom: 0,
     );

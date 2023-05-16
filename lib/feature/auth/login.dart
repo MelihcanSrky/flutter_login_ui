@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
     return Positioned(
       child: Image.asset(
         "assets/images/illustration.png",
-        fit: BoxFit.contain,
+        fit: BoxFit.fitWidth,
       ),
       bottom: 0,
     );
