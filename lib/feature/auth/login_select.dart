@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_netigma_login/feature/auth/login.dart';
 import 'package:flutter_netigma_login/feature/auth/select_corp.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/CustomButton.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/CustomTextField.dart';
@@ -7,7 +6,6 @@ import 'package:flutter_netigma_login/feature/auth/widgets/LoginDesc.dart';
 import 'package:flutter_netigma_login/res/colors.dart';
 import 'package:flutter_netigma_login/res/dimens.dart';
 import 'package:flutter_netigma_login/res/strings.dart';
-import 'package:flutter_netigma_login/res/typography.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginSelectPage extends StatelessWidget {
@@ -31,7 +29,7 @@ class LoginSelectPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       SizedBox(
-                        height: _height * 0.1.h,
+                        height: Dimens.margin_88.h,
                       ),
                       Image.asset(
                         "assets/images/netigma-logo.png",

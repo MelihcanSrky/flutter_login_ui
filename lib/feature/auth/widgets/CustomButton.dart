@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_netigma_login/res/colors.dart';
 import 'package:flutter_netigma_login/res/dimens.dart';
-import 'package:flutter_netigma_login/res/typography.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../res/strings.dart';
 
 class CustomButton extends StatefulWidget {
   final Function() onPressed;

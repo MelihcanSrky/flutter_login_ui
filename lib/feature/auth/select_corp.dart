@@ -86,7 +86,7 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
                   color: CustomColors.secondaryBlue),
               child: ImageIcon(
                 AssetImage("assets/icons/location.png"),
-                size: Dimens.margin_20,
+                size: Dimens.margin_20.h,
                 color: CustomColors.primaryBlue,
               )),
         ),

@@ -19,6 +19,7 @@ class Dimens {
   static const double margin_56 = 56.0;
   static const double margin_60 = 60.0;
   static const double margin_64 = 64.0;
+  static const double margin_88 = 88.0;
 
   // borderRadius
   static const double borderRadiusDefault = 12.0;

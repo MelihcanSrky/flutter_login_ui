@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../res/colors.dart';
 import '../../../res/dimens.dart';
-import '../../../res/typography.dart';
 
 class CustomTextButton extends StatelessWidget {
   /// Asset image icon

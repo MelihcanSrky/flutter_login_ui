@@ -50,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(
-                        height: _height * 0.02.h,
+                        height: Dimens.margin_16.h,
                       ),
                       LoginDesc(descText: Strings.loginDesc),
                       SizedBox(
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       buildRememberMe(),
                       SizedBox(
-                        height: _height * 0.02.h,
+                        height: Dimens.margin_24.h,
                       ),
                       CustomButton(
                         onPressed: () {},

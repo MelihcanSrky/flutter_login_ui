@@ -143,7 +143,7 @@ class LightTheme extends ApplicationTheme
           hintStyle: h5Regular.copyWith(color: greyMedium),
         ),
         listTileTheme: ThemeData.light().listTileTheme.copyWith(
-              contentPadding: EdgeInsets.symmetric(vertical: 16.h),
+              contentPadding: EdgeInsets.symmetric(vertical: 6.h),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0).r,
               ),
