@@ -27,6 +27,8 @@ class LightTheme extends ApplicationTheme
 
         /// Primary Text
         primaryColorDark: blackLight,
+
+        backgroundColor: white,
         primaryTextTheme: GoogleFonts.poppinsTextTheme(ThemeData.light()
             .primaryTextTheme
             .copyWith(
@@ -57,6 +59,7 @@ class LightTheme extends ApplicationTheme
               thickness: 1.h,
             ),
         appBarTheme: ThemeData.light().appBarTheme.copyWith(
+              shadowColor: blackLight.withOpacity(0.3),
               elevation: 1,
               centerTitle: true,
               toolbarHeight: 55.h,
@@ -105,6 +108,7 @@ class LightTheme extends ApplicationTheme
           ThemeData.light().textTheme.copyWith(
               headlineLarge: h4Semibold,
               headlineMedium: h5Medium,
+              headlineSmall: h4Regular,
               labelMedium: h5Medium,
               titleLarge: h5Semibold,
               titleMedium: h5Regular,

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/CustomButton.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/CustomTextField.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/LoginDesc.dart';
@@ -47,7 +45,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       Text(
                         Strings.login,
-                        style: CustomTypography.h3,
+                        style: CustomTypography.h3.copyWith(
+                            color: Theme.of(context).primaryColorDark),
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(
@@ -89,10 +88,10 @@ class _LoginPageState extends State<LoginPage> {
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: Dimens.margin_14.w, vertical: Dimens.margin_14.h),
-      child: Text(
-        Strings.poweredBy,
-        style: CustomTypography.h6_regular,
-      ),
+      child: Text(Strings.poweredBy,
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                color: Theme.of(context).primaryColorDark,
+              )),
     );
   }
 
@@ -114,12 +113,13 @@ class _LoginPageState extends State<LoginPage> {
           padding: EdgeInsets.symmetric(horizontal: Dimens.margin_8.w),
           child: Text(
             Strings.rememberMe,
-            style: CustomTypography.h5_semibold.copyWith(
-                color: CustomColors.primaryBlue, fontWeight: FontWeight.w500),
+            style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                  color: Theme.of(context).primaryColor,
+                ),
           ),
         ),
         Switch.adaptive(
-            activeColor: CustomColors.primaryBlue,
+            activeColor: Theme.of(context).primaryColor,
             inactiveTrackColor: CustomColors.secondaryText,
             value: _isRemember,
             onChanged: (value) {
@@ -143,15 +143,10 @@ class _LoginPageState extends State<LoginPage> {
           onPressed: () {
             Navigator.pop(context);
           }),
-      title: Text('netigma', style: CustomTypography.h3),
+      title: Text('netigma',
+          style: CustomTypography.h3
+              .copyWith(color: Theme.of(context).primaryColorDark)),
       toolbarHeight: _height * 0.1.h,
-      bottom: PreferredSize(
-        child: Container(
-          color: CustomColors.dividerGrey,
-          height: 1.0.h,
-        ),
-        preferredSize: Size.fromHeight(1.0.h),
-      ),
     );
   }
 }

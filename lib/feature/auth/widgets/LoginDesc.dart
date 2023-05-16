@@ -23,8 +23,6 @@ class LoginDesc extends StatelessWidget {
       child: Text(
         descText,
         style: Theme.of(context).textTheme.titleMedium,
-        // style: CustomTypography.h5_regular
-        //     .copyWith(color: CustomColors.secondaryText),
         textAlign: TextAlign.center,
       ),
     );

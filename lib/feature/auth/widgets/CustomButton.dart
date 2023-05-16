@@ -23,9 +23,11 @@ class _CustomButtonState extends State<CustomButton> {
       child: Padding(
         padding: EdgeInsets.symmetric(
             horizontal: Dimens.margin_12.w, vertical: Dimens.margin_12.h),
-        child: Text(
-          widget.text,
-        ),
+        child: Text(widget.text,
+            style: Theme.of(context)
+                .textTheme
+                .headlineMedium!
+                .copyWith(color: Theme.of(context).backgroundColor)),
       ),
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(CustomColors.primaryBlue),
