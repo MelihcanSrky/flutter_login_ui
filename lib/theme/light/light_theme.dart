@@ -21,7 +21,12 @@ class LightTheme extends ApplicationTheme
   @override
   ThemeData get theme => ThemeData.light().copyWith(
         scaffoldBackgroundColor: white,
+
+        /// Primary Blue
         primaryColor: bluePrimary,
+
+        /// Primary Text
+        primaryColorDark: blackLight,
         primaryTextTheme: GoogleFonts.poppinsTextTheme(ThemeData.light()
             .primaryTextTheme
             .copyWith(

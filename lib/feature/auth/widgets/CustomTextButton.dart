@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../res/colors.dart';
 import '../../../res/dimens.dart';
@@ -23,16 +24,16 @@ class CustomTextButton extends StatelessWidget {
             elevation: 0,
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.symmetric(
-                horizontal: 0, vertical: Dimens.margin_14)),
+                horizontal: 0, vertical: Dimens.margin_14.h)),
         onPressed: () {},
         icon: ImageIcon(
           icon,
-          color: CustomColors.primaryBlue,
+          color: Theme.of(context).primaryColor,
         ),
         label: Text(text,
             style: Theme.of(context)
                 .textTheme
                 .labelMedium!
-                .copyWith(color: CustomColors.primaryBlue)));
+                .copyWith(color: Theme.of(context).primaryColor)));
   }
 }

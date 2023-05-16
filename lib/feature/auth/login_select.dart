@@ -135,10 +135,14 @@ class CustomDividerWithText extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.all(Dimens.margin_10.r),
+          padding: EdgeInsets.symmetric(
+              horizontal: Dimens.margin_10.w, vertical: Dimens.margin_10.h),
           child: Text(
             text,
-            style: Theme.of(context).primaryTextTheme.titleMedium,
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(color: Theme.of(context).primaryColorDark),
           ),
         ),
         Expanded(

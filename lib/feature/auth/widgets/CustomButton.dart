@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_netigma_login/res/colors.dart';
 import 'package:flutter_netigma_login/res/dimens.dart';
 import 'package:flutter_netigma_login/res/typography.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../res/strings.dart';
 
@@ -20,7 +21,8 @@ class _CustomButtonState extends State<CustomButton> {
     return ElevatedButton(
       onPressed: widget.onPressed,
       child: Padding(
-        padding: const EdgeInsets.all(Dimens.margin_12),
+        padding: EdgeInsets.symmetric(
+            horizontal: Dimens.margin_12.w, vertical: Dimens.margin_12.h),
         child: Text(
           widget.text,
         ),

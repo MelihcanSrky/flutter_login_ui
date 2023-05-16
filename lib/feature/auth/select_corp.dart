@@ -32,6 +32,9 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
                 height: Dimens.margin_16.h,
               ),
               buildSearchTextField(),
+              SizedBox(
+                height: Dimens.margin_8.h,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -44,6 +47,9 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
                     text: Strings.sortByDest,
                   ),
                 ],
+              ),
+              SizedBox(
+                height: Dimens.margin_8.h,
               ),
               buildListView()
             ],
@@ -74,7 +80,8 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
           shadowColor: CustomColors.dividerGrey,
           borderRadius: BorderRadius.circular(Dimens.margin_8.r),
           child: Container(
-              padding: EdgeInsets.all(Dimens.margin_8.r),
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimens.margin_8.w, vertical: Dimens.margin_8.h),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimens.margin_8.r),
                   color: CustomColors.secondaryBlue),
@@ -88,7 +95,7 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
           style: Theme.of(context)
               .textTheme
               .labelMedium!
-              .copyWith(color: CustomColors.primaryText),
+              .copyWith(color: Theme.of(context).primaryColorDark),
         ),
         onTap: () {
           Navigator.push(
@@ -131,13 +138,6 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
           }),
       title: Text(Strings.selectCorp, style: CustomTypography.h3),
       toolbarHeight: _height * 0.1.h,
-      // bottom: PreferredSize(
-      //   child: Container(
-      //     color: CustomColors.dividerGrey,
-      //     height: 1.0,
-      //   ),
-      //   preferredSize: Size.fromHeight(1.0),
-      // ),
     );
   }
 }

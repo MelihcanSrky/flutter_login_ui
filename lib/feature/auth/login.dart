@@ -87,7 +87,8 @@ class _LoginPageState extends State<LoginPage> {
 
   Padding buildPoweredBy() {
     return Padding(
-      padding: EdgeInsets.all(Dimens.margin_14.r),
+      padding: EdgeInsets.symmetric(
+          horizontal: Dimens.margin_14.w, vertical: Dimens.margin_14.h),
       child: Text(
         Strings.poweredBy,
         style: CustomTypography.h6_regular,

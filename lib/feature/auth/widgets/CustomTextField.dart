@@ -58,7 +58,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
-        contentPadding: EdgeInsets.all(Dimens.margin_16.r),
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: Dimens.margin_16.w,
+          vertical: Dimens.margin_16.h,
+        ),
         prefixIcon:
             widget.prefixIcon != null ? ImageIcon(widget.prefixIcon) : null,
         prefixIconColor: CustomColors.primaryBlue,

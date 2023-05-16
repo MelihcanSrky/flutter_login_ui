@@ -33,18 +33,6 @@ class MyApp extends StatelessWidget {
               ),
             ),
             theme: context.watch<ThemeNotifier>().currentTheme,
-            // theme: ThemeData(
-            //   scaffoldBackgroundColor: Colors.white,
-            //   appBarTheme: const AppBarTheme(
-            //       color: Colors.white,
-            //       elevation: 0,
-            //       titleTextStyle: TextStyle(
-            //         color: Colors.black,
-            //         fontSize: 24,
-            //         fontWeight: FontWeight.bold,
-            //       ),
-            //       iconTheme: IconThemeData(color: CustomColors.primaryBlue)),
-            // ),
           );
         });
   }
