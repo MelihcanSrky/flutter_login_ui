@@ -134,7 +134,7 @@ class CustomDividerWithText extends StatelessWidget {
             child: Divider(
               height: 2.h,
               thickness: 1.h,
-              color: CustomColors.dividerGrey,
+              color: Theme.of(context).dividerColor,
             ),
           ),
         ),
@@ -154,7 +154,7 @@ class CustomDividerWithText extends StatelessWidget {
             child: Divider(
               height: 2.h,
               thickness: 1.h,
-              color: CustomColors.dividerGrey,
+              color: Theme.of(context).dividerColor,
             ),
           ),
         ),

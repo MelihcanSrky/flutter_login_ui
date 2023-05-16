@@ -31,4 +31,8 @@ mixin ColorSchemeLight {
   final Color greyDark = const Color(0xff444444);
   final Color greyLight = const Color(0xffd4d4d4);
   final Color pinkMedium = const Color(0xffffc3eb);
+
+  //
+
+  final Color neutralLight = const Color(0xffeaeaea);
 }

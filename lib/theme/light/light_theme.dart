@@ -28,6 +28,16 @@ class LightTheme extends ApplicationTheme
         /// Primary Text
         primaryColorDark: blackLight,
 
+        /// Secondary Text
+        primaryColorLight: greyMedium,
+
+        /// Border Color
+        shadowColor: greyLight.withOpacity(0.5),
+
+        /// Divider Color
+        dividerColor: neutralLight,
+
+        /// Background Color
         backgroundColor: white,
         primaryTextTheme: GoogleFonts.poppinsTextTheme(ThemeData.light()
             .primaryTextTheme

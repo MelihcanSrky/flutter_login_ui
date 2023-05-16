@@ -32,9 +32,6 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
                 height: Dimens.margin_16.h,
               ),
               buildSearchTextField(),
-              SizedBox(
-                height: Dimens.margin_8.h,
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -72,11 +69,12 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
     return Container(
       decoration: BoxDecoration(
           border: Border(
-              top: BorderSide(color: CustomColors.dividerGrey, width: 1.w))),
+              top: BorderSide(
+                  color: Theme.of(context).dividerColor, width: 1.w))),
       child: ListTile(
         leading: Material(
           elevation: 3,
-          shadowColor: CustomColors.dividerGrey,
+          shadowColor: Theme.of(context).dividerColor,
           borderRadius: BorderRadius.circular(Dimens.margin_8.r),
           child: Container(
               padding: EdgeInsets.symmetric(
@@ -112,7 +110,7 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
   Widget buildSearchTextField() {
     return Material(
       elevation: 2,
-      shadowColor: CustomColors.dividerGrey,
+      shadowColor: Theme.of(context).dividerColor,
       borderRadius: BorderRadius.circular(Dimens.margin_64),
       child: CustomTextField(
         labelText: "Arama yapın...",
