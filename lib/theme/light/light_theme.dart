@@ -45,6 +45,9 @@ class LightTheme extends ApplicationTheme
 
         /// Error Color
         errorColor: redActive,
+
+        /// WhiteLightActive
+        highlightColor: whiteLightActive,
         primaryTextTheme: GoogleFonts.poppinsTextTheme(ThemeData.light()
             .primaryTextTheme
             .copyWith(
@@ -191,6 +194,16 @@ class LightTheme extends ApplicationTheme
               visualDensity: VisualDensity.compact,
               splashRadius: 10.0.h,
             ),
+        //
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: white,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          selectedItemColor: bluePrimary,
+          unselectedItemColor: grey,
+          selectedLabelStyle: h6Regular,
+          unselectedLabelStyle: h6Regular,
+        ),
       );
 
   OutlineInputBorder _defaultInputBorder() {

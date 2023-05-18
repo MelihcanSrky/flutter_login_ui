@@ -24,4 +24,6 @@ mixin Strings {
   static const sortByName = "İsme Göre Sırala";
 
   static const sortByDest = "Mesafeye Göre Sırala";
+
+  static const operations = "İşlemler";
 }

@@ -4,6 +4,7 @@ import 'package:flutter_netigma_login/extensions/login_validators.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_button.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/login_desc.dart';
+import 'package:flutter_netigma_login/feature/home_page/home_page.dart';
 import 'package:flutter_netigma_login/res/colors.dart';
 import 'package:flutter_netigma_login/res/dimens.dart';
 import 'package:flutter_netigma_login/res/strings.dart';
@@ -75,7 +76,14 @@ class _LoginPageState extends State<LoginPage> {
                         height: Dimens.margin_24.h,
                       ),
                       CustomButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomePage(),
+                            ),
+                          );
+                        },
                         text: Strings.login,
                       ),
                     ]),

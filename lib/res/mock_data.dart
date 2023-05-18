@@ -18,3 +18,16 @@ List corpsList = [
   {"corp": "Kare Lojistik", "dest": 2900},
   {"corp": "Emlak İnşaat", "dest": 2100}
 ];
+
+List operationList = [
+  {"label": "Favoriler", "iconPath": "assets/icons/heart.svg"},
+  {"label": "Harita", "iconPath": "assets/icons/map.svg"},
+  {"label": "Diğer İşlemler", "iconPath": "assets/icons/folder-add.svg"},
+  {"label": "Mebis", "iconPath": "assets/icons/folder-add.svg"},
+  {"label": "Tapu", "iconPath": "assets/icons/bookmark.svg"},
+  {"label": "Şablon Sorgu", "iconPath": "assets/icons/folder-add.svg"},
+  {"label": "Anket Girişi", "iconPath": "assets/icons/clipboard-text.svg"},
+  {"label": "Sorgu Sayfası", "iconPath": "assets/icons/filter-search.svg"},
+  {"label": "Anket Sorgulama", "iconPath": "assets/icons/document-filter.svg"},
+  {"label": "Numarataj", "iconPath": "assets/icons/location-add.svg"},
+];
