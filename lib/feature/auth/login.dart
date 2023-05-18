@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_netigma_login/feature/auth/widgets/CustomButton.dart';
-import 'package:flutter_netigma_login/feature/auth/widgets/CustomTextField.dart';
-import 'package:flutter_netigma_login/feature/auth/widgets/LoginDesc.dart';
+import 'package:flutter_netigma_login/feature/auth/widgets/custom_button.dart';
+import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
+import 'package:flutter_netigma_login/feature/auth/widgets/login_desc.dart';
 import 'package:flutter_netigma_login/res/colors.dart';
 import 'package:flutter_netigma_login/res/dimens.dart';
 import 'package:flutter_netigma_login/res/strings.dart';
@@ -136,10 +136,6 @@ class _LoginPageState extends State<LoginPage> {
 
   AppBar buildAppbar(double _height) {
     return AppBar(
-      systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: Colors.white,
-        statusBarIconBrightness: Brightness.dark,
-      ),
       centerTitle: true,
       leading: IconButton(
           icon: SvgPicture.asset(

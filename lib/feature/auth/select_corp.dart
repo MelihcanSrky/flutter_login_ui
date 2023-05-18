@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_netigma_login/feature/auth/widgets/CustomTextButton.dart';
-import 'package:flutter_netigma_login/feature/auth/widgets/CustomTextField.dart';
+import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_button.dart';
+import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
 import 'package:flutter_netigma_login/res/mock_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -19,6 +19,26 @@ class SelectCorpPage extends StatefulWidget {
 }
 
 class _SelectCorpPageState extends State<SelectCorpPage> {
+  late List mockCorpsList;
+
+  @override
+  void initState() {
+    super.initState();
+    mockCorpsList = corpsList;
+  }
+
+  void sortListByName() {
+    setState(() {
+      mockCorpsList.sort((a, b) => a["corp"].compareTo(b["corp"]));
+    });
+  }
+
+  void sortListByDest() {
+    setState(() {
+      mockCorpsList.sort((a, b) => a["dest"].compareTo(b["dest"]));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
@@ -39,10 +59,12 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
                   CustomTextButton(
                     icon: "assets/icons/sort.svg",
                     text: Strings.sortByName,
+                    onPressed: sortListByName,
                   ),
                   CustomTextButton(
                     icon: "assets/icons/candle-outline.svg",
                     text: Strings.sortByDest,
+                    onPressed: sortListByDest,
                   ),
                 ],
               ),
@@ -59,7 +81,7 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
     return Expanded(
       child: ListView.builder(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          itemCount: corpsList.length,
+          itemCount: mockCorpsList.length,
           itemBuilder: (context, index) {
             return buildListTile(index, context);
           }),
@@ -88,7 +110,7 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
               ),
             )),
         title: Text(
-          corpsList[index],
+          mockCorpsList[index]["corp"].toString(),
           style: Theme.of(context)
               .textTheme
               .labelMedium!
