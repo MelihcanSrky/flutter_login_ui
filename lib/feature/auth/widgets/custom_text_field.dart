@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_netigma_login/extensions/login_validators.dart';
 import 'package:flutter_netigma_login/res/typography.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -32,6 +32,9 @@ class CustomTextField extends StatefulWidget {
   /// Prefix icon color
   final Color prefixIconColor;
 
+  /// Validator
+  final String? Function(String?)? validator;
+
   /// Şifre alanı mı değil mi
   /// Şifre alanıysa suffixIcon otomatik gösterilir
   /// suffix icon eklenmez
@@ -47,7 +50,8 @@ class CustomTextField extends StatefulWidget {
       this.suffixIconOnPressed,
       this.borderRadius = Dimens.borderRadiusDefault,
       this.floatingLabelBehavior = true,
-      this.prefixIconColor = CustomColors.primaryBlue});
+      this.prefixIconColor = CustomColors.primaryBlue,
+      this.validator});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -65,6 +69,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      validator: (widget.isPassword != null && widget.isPassword!)
+          ? validatePassword
+          : (widget.validator != null ? widget.validator : null) ??
+              widget.validator,
       obscureText: widget.isPassword != null && widget.isPassword!
           ? isPasswordLock
           : false,
@@ -141,6 +150,20 @@ class _CustomTextFieldState extends State<CustomTextField> {
           borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: BorderSide(
             color: Theme.of(context).shadowColor,
+            width: 1.0.w,
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(widget.borderRadius),
+          borderSide: BorderSide(
+            color: Theme.of(context).errorColor,
+            width: 1.0.w,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(widget.borderRadius),
+          borderSide: BorderSide(
+            color: Theme.of(context).errorColor,
             width: 1.0.w,
           ),
         ),

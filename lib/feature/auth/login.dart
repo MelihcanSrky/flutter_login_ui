@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_netigma_login/extensions/login_validators.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_button.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/login_desc.dart';
@@ -59,6 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       CustomTextField(
                         labelText: Strings.userName,
+                        validator: validateUserName,
                       ),
                       SizedBox(
                         height: Dimens.margin_12.h,

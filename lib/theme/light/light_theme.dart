@@ -42,6 +42,9 @@ class LightTheme extends ApplicationTheme
 
         /// Blue Light
         cardColor: blueLight,
+
+        /// Error Color
+        errorColor: redActive,
         primaryTextTheme: GoogleFonts.poppinsTextTheme(ThemeData.light()
             .primaryTextTheme
             .copyWith(
