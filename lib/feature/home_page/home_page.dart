@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
+import 'package:flutter_netigma_login/feature/home_page/widgets/operations_grid_card.dart';
 import 'package:flutter_netigma_login/res/dimens.dart';
 import 'package:flutter_netigma_login/res/mock_data.dart';
 import 'package:flutter_netigma_login/res/strings.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,23 +19,6 @@ class _HomePageState extends State<HomePage> {
     final double _width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Theme.of(context).highlightColor,
-      bottomNavigationBar: Material(
-        shadowColor: Theme.of(context).shadowColor,
-        elevation: 4,
-        child: Container(
-          height: Dimens.margin_84.h,
-          child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            items: [
-              buildNavBarItem("Anasayfa", "assets/icons/home.svg"),
-              buildNavBarItem("Dashboard", "assets/icons/ranking.svg"),
-              buildNavBarItem("Formlar", "assets/icons/firstline.svg"),
-              buildNavBarItem("Görevler", "assets/icons/category-2.svg"),
-              buildNavBarItem("Ayarlar", "assets/icons/setting-2.svg"),
-            ],
-          ),
-        ),
-      ),
       body: Stack(children: [
         buildBackgroundImage(_width),
         Container(
@@ -92,13 +75,15 @@ class _HomePageState extends State<HomePage> {
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
-                      childAspectRatio: 1.2,
+                      childAspectRatio: 1.26,
                       crossAxisSpacing: Dimens.margin_8.w,
                       mainAxisSpacing: Dimens.margin_8.h,
                     ),
                     itemCount: operationList.length,
                     itemBuilder: (context, index) {
-                      return buildOperationsGridCards(context, index);
+                      return OperationGridCard(
+                          iconPath: operationList[index]["iconPath"],
+                          label: operationList[index]["label"]);
                     },
                   )
                 ],
@@ -106,37 +91,6 @@ class _HomePageState extends State<HomePage> {
             )
           ]),
         )
-      ]),
-    );
-  }
-
-  Container buildOperationsGridCards(BuildContext context, int index) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: Dimens.margin_16.h),
-      decoration: BoxDecoration(
-        border: Border.all(color: Theme.of(context).shadowColor),
-        borderRadius: BorderRadius.circular(Dimens.margin_6.r),
-        color: Theme.of(context).backgroundColor,
-      ),
-      child: Column(children: [
-        Container(
-          padding: EdgeInsets.symmetric(
-              horizontal: Dimens.margin_8.w, vertical: Dimens.margin_8.h),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Dimens.margin_8.r),
-              color: Theme.of(context).cardColor),
-          child: SvgPicture.asset(
-            operationList[index]["iconPath"],
-          ),
-        ),
-        SizedBox(
-          height: Dimens.margin_8.h,
-        ),
-        Text(operationList[index]["label"],
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium!
-                .copyWith(color: Theme.of(context).primaryColorDark)),
       ]),
     );
   }
@@ -149,15 +103,6 @@ class _HomePageState extends State<HomePage> {
         width: _width,
       ),
     );
-  }
-
-  BottomNavigationBarItem buildNavBarItem(String label, String iconPath) {
-    return BottomNavigationBarItem(
-        icon: Padding(
-          padding: EdgeInsets.only(bottom: Dimens.margin_8.h),
-          child: SvgPicture.asset(iconPath),
-        ),
-        label: label);
   }
 
   Widget buildSearchTextField() {
