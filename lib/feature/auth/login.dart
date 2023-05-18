@@ -67,6 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       CustomTextField(
                         labelText: Strings.password,
+                        validator: validatePassword,
                         isPassword: true,
                       ),
                       buildRememberMe(),

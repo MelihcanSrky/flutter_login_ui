@@ -59,6 +59,7 @@ class CustomTextField extends StatefulWidget {
 
 class _CustomTextFieldState extends State<CustomTextField> {
   late bool isPasswordLock;
+  String? _errorText = null;
   @override
   void initState() {
     super.initState();
@@ -68,25 +69,34 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: widget.validator != null
+          ? (value) {
+              setState(() {
+                _errorText = widget.validator!(value);
+              });
+            }
+          : null,
       controller: widget.controller,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      validator: (widget.isPassword != null && widget.isPassword!)
-          ? validatePassword
-          : (widget.validator != null ? widget.validator : null) ??
-              widget.validator,
       obscureText: widget.isPassword != null && widget.isPassword!
           ? isPasswordLock
           : false,
       style: Theme.of(context).textTheme.headlineSmall!.copyWith(
             color: Theme.of(context).primaryColorDark,
           ),
+      //
+      //
+      // decoration settings
       decoration: InputDecoration(
         filled: true,
-        fillColor: Colors.white,
+        fillColor: Theme.of(context).backgroundColor,
         contentPadding: EdgeInsets.symmetric(
           horizontal: Dimens.margin_16.w,
           vertical: Dimens.margin_16.h,
         ),
+        //
+        //
+        // prefix icon settings
         prefixIcon: widget.prefixIcon != null
             ? IconButton(
                 iconSize: Dimens.margin_24.h,
@@ -97,6 +107,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 ))
             : null,
         prefixIconColor: widget.prefixIconColor,
+        //
+        //
+        // suffix icon settings
         suffixIcon: widget.isPassword != null && widget.isPassword!
             ? IconButton(
                 iconSize: Dimens.margin_24.h,
@@ -130,15 +143,25 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 ? Theme.of(context).primaryColorLight
                 : Theme.of(context).primaryColorDark
             : Theme.of(context).primaryColorLight,
+        //
+        //
+        // label settings
         labelText: (widget.labelText),
+        errorText: _errorText,
         floatingLabelBehavior: widget.floatingLabelBehavior
             ? FloatingLabelBehavior.auto
             : FloatingLabelBehavior.never,
         floatingLabelStyle: CustomTypography.special_semibold.copyWith(
-          color: Theme.of(context).primaryColor,
+          color: _errorText == null
+              ? Theme.of(context).primaryColor
+              : Theme.of(context).errorColor,
           fontWeight: FontWeight.w500,
         ),
         labelStyle: Theme.of(context).textTheme.titleMedium,
+        //
+        //
+        // border settings
+        // focused border
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: BorderSide(
@@ -146,6 +169,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             width: 1.0.w,
           ),
         ),
+        // enabled border
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: BorderSide(
@@ -153,6 +177,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             width: 1.0.w,
           ),
         ),
+        // focused error border
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: BorderSide(
@@ -160,6 +185,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             width: 1.0.w,
           ),
         ),
+        // unfocused error border
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: BorderSide(
