@@ -95,20 +95,33 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
               top: BorderSide(
                   color: Theme.of(context).dividerColor, width: 1.w))),
       child: ListTile(
-        leading: Material(
-            elevation: 3,
-            shadowColor: Theme.of(context).dividerColor,
-            borderRadius: BorderRadius.circular(Dimens.margin_8.r),
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                  horizontal: Dimens.margin_8.w, vertical: Dimens.margin_8.h),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimens.margin_8.r),
-                  color: Theme.of(context).cardColor),
-              child: SvgPicture.asset(
-                "assets/icons/location.svg",
-              ),
-            )),
+        leading: Container(
+          padding: EdgeInsets.symmetric(
+              horizontal: Dimens.margin_8.w, vertical: Dimens.margin_8.h),
+          decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Theme.of(context).shadowColor,
+                  blurRadius: 0,
+                  offset: Offset(0, 0),
+                ),
+                BoxShadow(
+                  color: Theme.of(context).shadowColor,
+                  blurRadius: Dimens.margin_4,
+                  offset: Offset(0, Dimens.margin_4),
+                ),
+                BoxShadow(
+                  color: Theme.of(context).shadowColor,
+                  blurRadius: Dimens.margin_4,
+                  offset: Offset(0, Dimens.margin_4),
+                ),
+              ],
+              borderRadius: BorderRadius.circular(Dimens.margin_8.r),
+              color: Theme.of(context).cardColor),
+          child: SvgPicture.asset(
+            "assets/icons/location.svg",
+          ),
+        ),
         title: Text(
           mockCorpsList[index]["corp"].toString(),
           style: Theme.of(context)

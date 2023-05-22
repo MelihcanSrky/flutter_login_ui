@@ -12,17 +12,20 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: HomePage(),
-      bottomNavigationBar: Material(
-        shadowColor: Theme.of(context).primaryColorDark,
-        elevation: 16,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).backgroundColor,
-          ),
-          alignment: Alignment.topCenter,
-          height: Dimens.margin_84.h,
-          child: NavBar(),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).backgroundColor,
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).shadowColor,
+              blurRadius: Dimens.margin_4,
+              offset: Offset(0, -Dimens.margin_4),
+            ),
+          ],
         ),
+        alignment: Alignment.topCenter,
+        height: Dimens.margin_84.h,
+        child: NavBar(),
       ),
     );
   }
