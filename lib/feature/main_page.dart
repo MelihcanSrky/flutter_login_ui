@@ -13,9 +13,13 @@ class MainPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: HomePage(),
       bottomNavigationBar: Material(
-        shadowColor: Theme.of(context).shadowColor,
-        elevation: 4,
+        shadowColor: Theme.of(context).primaryColorDark,
+        elevation: 16,
         child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).backgroundColor,
+          ),
+          alignment: Alignment.topCenter,
           height: Dimens.margin_84.h,
           child: NavBar(),
         ),

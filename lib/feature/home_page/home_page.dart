@@ -85,6 +85,7 @@ class _HomePageState extends State<HomePage> {
                       return OperationGridCard(
                           onTap: () {
                             SnackBar snackBar = SnackBar(
+                              duration: Duration(milliseconds: 500),
                               content: Text(
                                   "${operationList[index]["label"]} tıklandı."),
                             );
