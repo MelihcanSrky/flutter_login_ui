@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final double _width = MediaQuery.of(context).size.width;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).highlightColor,
       body: Stack(children: [
         buildBackgroundImage(_width),
@@ -82,6 +83,14 @@ class _HomePageState extends State<HomePage> {
                     itemCount: operationList.length,
                     itemBuilder: (context, index) {
                       return OperationGridCard(
+                          onTap: () {
+                            SnackBar snackBar = SnackBar(
+                              content: Text(
+                                  "${operationList[index]["label"]} tıklandı."),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          },
                           iconPath: operationList[index]["iconPath"],
                           label: operationList[index]["label"]);
                     },

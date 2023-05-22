@@ -10,6 +10,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: HomePage(),
       bottomNavigationBar: Material(
         shadowColor: Theme.of(context).shadowColor,

@@ -131,6 +131,7 @@ class LightTheme extends ApplicationTheme
               labelMedium: h5Medium,
               titleLarge: h5Semibold,
               titleMedium: h5Regular,
+              titleSmall: h6Medium,
               bodyLarge: specialSemiBold,
               bodyMedium: h6Regular,
               bodySmall: specialRegular,
