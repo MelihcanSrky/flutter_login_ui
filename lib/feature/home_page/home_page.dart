@@ -83,6 +83,7 @@ class _HomePageState extends State<HomePage> {
                     itemCount: operationList.length,
                     itemBuilder: (context, index) {
                       return OperationGridCard(
+                          isShadowBox: true,
                           onTap: () {
                             SnackBar snackBar = SnackBar(
                               duration: Duration(milliseconds: 500),
