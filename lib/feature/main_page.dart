@@ -25,7 +25,10 @@ class MainPage extends StatelessWidget {
         ),
         alignment: Alignment.topCenter,
         height: Dimens.margin_84.h,
-        child: NavBar(),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: Dimens.margin_16.w),
+          child: NavBar(),
+        ),
       ),
     );
   }
