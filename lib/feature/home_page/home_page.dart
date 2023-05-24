@@ -6,6 +6,8 @@ import 'package:flutter_netigma_login/res/mock_data.dart';
 import 'package:flutter_netigma_login/res/strings.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../map/map_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -72,26 +74,34 @@ class _HomePageState extends State<HomePage> {
                     height: Dimens.margin_16.h,
                   ),
                   GridView.builder(
+                    physics: NeverScrollableScrollPhysics(),
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
-                      childAspectRatio: 1.26,
+                      childAspectRatio: 114 / 90,
                       crossAxisSpacing: Dimens.margin_8.w,
                       mainAxisSpacing: Dimens.margin_8.h,
                     ),
                     itemCount: operationList.length,
                     itemBuilder: (context, index) {
                       return OperationGridCard(
-                          isShadowBox: true,
+                          isShadowBox: false,
                           onTap: () {
-                            SnackBar snackBar = SnackBar(
-                              duration: Duration(milliseconds: 500),
-                              content: Text(
-                                  "${operationList[index]["label"]} tıklandı."),
-                            );
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackBar);
+                            if (operationList[index]["label"] == "Harita") {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MapPage()));
+                            } else {
+                              SnackBar snackBar = SnackBar(
+                                duration: Duration(milliseconds: 500),
+                                content: Text(
+                                    "${operationList[index]["label"]} tıklandı."),
+                              );
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            }
                           },
                           iconPath: operationList[index]["iconPath"],
                           label: operationList[index]["label"]);
