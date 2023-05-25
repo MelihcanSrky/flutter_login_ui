@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
 import 'package:flutter_netigma_login/feature/map/widgets/custom_icon_button.dart';
@@ -24,59 +22,66 @@ class _MapPageState extends State<MapPage> {
       body: SafeArea(
         child: Container(
           child: Column(
-            children: [
-              buildTopBar(context),
-              Expanded(
-                child: FlutterMap(
-                  options: MapOptions(
-                    center: LatLng(51.5, -0.09),
-                    zoom: 13.0,
-                  ),
-                  children: [
-                    TileLayer(
-                      urlTemplate:
-                          'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                      userAgentPackageName: 'com.example.app',
-                    ),
-                  ],
-                ),
-              )
-            ],
+            children: [buildTopBar(context), buildMap()],
           ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton:
-          Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-        FloatingActionButton(
-            backgroundColor: Theme.of(context).backgroundColor,
-            onPressed: () {},
-            child: SvgPicture.asset(
-              "assets/icons/map.svg",
-              height: Dimens.margin_32.h,
-              width: Dimens.margin_32.w,
-            )),
-        SizedBox(
-          height: Dimens.margin_8.h,
-        ),
-        FloatingActionButton(
-            backgroundColor: Theme.of(context).primaryColor,
-            onPressed: () {},
-            child: SvgPicture.asset(
-              "assets/icons/send-2.svg",
-            )),
-      ]),
+      floatingActionButton: buildFloatingActionButtons(context),
     );
+  }
+
+  Expanded buildMap() {
+    return Expanded(
+      child: FlutterMap(
+        options: MapOptions(
+          center: LatLng(51.5, -0.09),
+          zoom: 13.0,
+        ),
+        children: [
+          TileLayer(
+            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+            userAgentPackageName: 'com.example.app',
+          ),
+        ],
+      ),
+    );
+  }
+
+  Column buildFloatingActionButtons(BuildContext context) {
+    return Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+      FloatingActionButton(
+          backgroundColor: Theme.of(context).backgroundColor,
+          onPressed: () {},
+          child: SvgPicture.asset(
+            "assets/icons/map.svg",
+            height: Dimens.margin_32.h,
+            width: Dimens.margin_32.w,
+          )),
+      SizedBox(
+        height: Dimens.margin_8.h,
+      ),
+      FloatingActionButton(
+          backgroundColor: Theme.of(context).primaryColor,
+          onPressed: () {},
+          child: SvgPicture.asset(
+            "assets/icons/send-2.svg",
+          )),
+    ]);
   }
 
   Container buildTopBar(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(
-          // left: Dimens.margin_16.w,
-          // right: Dimens.margin_16.w,
-          top: Dimens.margin_16.h,
-          bottom: Dimens.margin_8.h),
-      color: Theme.of(context).highlightColor,
+      decoration:
+          BoxDecoration(color: Theme.of(context).highlightColor, boxShadow: [
+        BoxShadow(
+          color: Theme.of(context).primaryColorDark,
+          blurRadius: 4,
+          offset: Offset(0, Dimens.margin_4),
+        ),
+      ]),
+      padding:
+          EdgeInsets.only(top: Dimens.margin_16.h, bottom: Dimens.margin_8.h),
       child: Column(
         children: [
           Padding(
@@ -136,6 +141,7 @@ class _MapPageState extends State<MapPage> {
       child: SizedBox(
         height: Dimens.margin_48.h,
         child: CustomTextField(
+          isShadowBorder: true,
           labelText: "Haritada arayın...",
           prefixIcon: "assets/icons/search-outline.svg",
           borderRadius: 100,
@@ -151,7 +157,13 @@ class _MapPageState extends State<MapPage> {
       width: Dimens.margin_48.w,
       height: Dimens.margin_48.h,
       decoration: BoxDecoration(
-          border: Border.all(width: 1, color: Theme.of(context).shadowColor),
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).primaryColorDark.withOpacity(0.2),
+              blurRadius: 2,
+              offset: Offset(0, 2),
+            ),
+          ],
           color: Theme.of(context).backgroundColor,
           borderRadius: BorderRadius.circular(100)),
       child: IconButton(

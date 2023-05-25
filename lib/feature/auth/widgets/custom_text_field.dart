@@ -23,6 +23,10 @@ class CustomTextField extends StatefulWidget {
   /// Text Editing Controller
   final TextEditingController? controller;
 
+  /// Shadow border ya da normal border
+  /// Default olarak normal border
+  final bool isShadowBorder;
+
   /// Border Radius
   final double borderRadius;
 
@@ -51,7 +55,8 @@ class CustomTextField extends StatefulWidget {
       this.borderRadius = Dimens.borderRadiusDefault,
       this.floatingLabelBehavior = true,
       this.prefixIconColor = CustomColors.primaryBlue,
-      this.validator});
+      this.validator,
+      this.isShadowBorder = false});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -68,129 +73,151 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      onChanged: widget.validator != null
-          ? (value) {
-              setState(() {
-                _errorText = widget.validator!(value);
-              });
-            }
-          : null,
-      controller: widget.controller,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      obscureText: widget.isPassword != null && widget.isPassword!
-          ? isPasswordLock
-          : false,
-      style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-            color: Theme.of(context).primaryColorDark,
-          ),
-      //
-      //
-      // decoration settings
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: Theme.of(context).backgroundColor,
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: Dimens.margin_16.w,
-          vertical: Dimens.margin_16.h,
-        ),
-        //
-        //
-        // prefix icon settings
-        prefixIcon: widget.prefixIcon != null
-            ? IconButton(
-                iconSize: Dimens.margin_24.h,
-                onPressed: null,
-                icon: SvgPicture.asset(
-                  widget.prefixIcon!,
-                  color: widget.prefixIconColor,
-                ))
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(widget.borderRadius),
+        boxShadow: widget.isShadowBorder
+            ? [
+                BoxShadow(
+                  color: Theme.of(context).primaryColorDark.withOpacity(0.2),
+                  blurRadius: 2,
+                  offset: Offset(0, 2),
+                )
+              ]
             : null,
-        prefixIconColor: widget.prefixIconColor,
-        //
-        //
-        // suffix icon settings
-        suffixIcon: widget.isPassword != null && widget.isPassword!
-            ? IconButton(
-                iconSize: Dimens.margin_24.h,
-                icon: isPasswordLock
-                    ? SvgPicture.asset(
-                        "assets/icons/eye-slash.svg",
-                      )
-                    : SvgPicture.asset(
-                        "assets/icons/eye.svg",
-                      ),
-                onPressed: () {
-                  setState(() {
-                    isPasswordLock = !isPasswordLock;
-                  });
-                },
-              )
-            : widget.suffixIcon != null
-                ? IconButton(
-                    iconSize: Dimens.margin_24.h,
-                    icon: SvgPicture.asset(
-                      widget.suffixIcon!,
-                      color: Theme.of(context).primaryColorLight,
-                    ),
-                    onPressed: widget.suffixIconOnPressed != null
-                        ? widget.suffixIconOnPressed
-                        : null,
-                  )
-                : null,
-        suffixIconColor: widget.isPassword != null && widget.isPassword!
+      ),
+      child: TextFormField(
+        onChanged: widget.validator != null
+            ? (value) {
+                setState(() {
+                  _errorText = widget.validator!(value);
+                });
+              }
+            : null,
+        controller: widget.controller,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        obscureText: widget.isPassword != null && widget.isPassword!
             ? isPasswordLock
-                ? Theme.of(context).primaryColorLight
-                : Theme.of(context).primaryColorDark
-            : Theme.of(context).primaryColorLight,
+            : false,
+        style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              color: Theme.of(context).primaryColorDark,
+            ),
         //
         //
-        // label settings
-        labelText: (widget.labelText),
-        errorText: _errorText,
-        floatingLabelBehavior: widget.floatingLabelBehavior
-            ? FloatingLabelBehavior.auto
-            : FloatingLabelBehavior.never,
-        floatingLabelStyle: CustomTypography.special_semibold.copyWith(
-          color: _errorText == null
-              ? Theme.of(context).primaryColor
-              : Theme.of(context).errorColor,
-          fontWeight: FontWeight.w500,
-        ),
-        labelStyle: Theme.of(context).textTheme.titleMedium,
-        //
-        //
-        // border settings
-        // focused border
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          borderSide: BorderSide(
-            color: Theme.of(context).primaryColor,
-            width: 1.0.w,
+        // decoration settings
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Theme.of(context).backgroundColor,
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: Dimens.margin_16.w,
+            vertical: Dimens.margin_16.h,
           ),
-        ),
-        // enabled border
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          borderSide: BorderSide(
-            color: Theme.of(context).shadowColor,
-            width: 1.0.w,
+          //
+          //
+          // prefix icon settings
+          prefixIcon: widget.prefixIcon != null
+              ? IconButton(
+                  iconSize: Dimens.margin_24.h,
+                  onPressed: null,
+                  icon: SvgPicture.asset(
+                    widget.prefixIcon!,
+                    color: widget.prefixIconColor,
+                  ))
+              : null,
+          prefixIconColor: widget.prefixIconColor,
+          //
+          //
+          // suffix icon settings
+          suffixIcon: widget.isPassword != null && widget.isPassword!
+              ? IconButton(
+                  iconSize: Dimens.margin_24.h,
+                  icon: isPasswordLock
+                      ? SvgPicture.asset(
+                          "assets/icons/eye-slash.svg",
+                        )
+                      : SvgPicture.asset(
+                          "assets/icons/eye.svg",
+                        ),
+                  onPressed: () {
+                    setState(() {
+                      isPasswordLock = !isPasswordLock;
+                    });
+                  },
+                )
+              : widget.suffixIcon != null
+                  ? IconButton(
+                      iconSize: Dimens.margin_24.h,
+                      icon: SvgPicture.asset(
+                        widget.suffixIcon!,
+                        color: Theme.of(context).primaryColorLight,
+                      ),
+                      onPressed: widget.suffixIconOnPressed != null
+                          ? widget.suffixIconOnPressed
+                          : null,
+                    )
+                  : null,
+          suffixIconColor: widget.isPassword != null && widget.isPassword!
+              ? isPasswordLock
+                  ? Theme.of(context).primaryColorLight
+                  : Theme.of(context).primaryColorDark
+              : Theme.of(context).primaryColorLight,
+          //
+          //
+          // label settings
+          labelText: (widget.labelText),
+          errorText: _errorText,
+          floatingLabelBehavior: widget.floatingLabelBehavior
+              ? FloatingLabelBehavior.auto
+              : FloatingLabelBehavior.never,
+          floatingLabelStyle: CustomTypography.special_semibold.copyWith(
+            color: _errorText == null
+                ? Theme.of(context).primaryColor
+                : Theme.of(context).errorColor,
+            fontWeight: FontWeight.w500,
           ),
-        ),
-        // focused error border
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          borderSide: BorderSide(
-            color: Theme.of(context).errorColor,
-            width: 1.0.w,
+          labelStyle: Theme.of(context).textTheme.titleMedium,
+          //
+          //
+          // border settings
+          // focused border
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: !widget.isShadowBorder
+                ? BorderSide(
+                    color: Theme.of(context).primaryColor,
+                    width: 1.0.w,
+                  )
+                : BorderSide.none,
           ),
-        ),
-        // unfocused error border
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          borderSide: BorderSide(
-            color: Theme.of(context).errorColor,
-            width: 1.0.w,
+          // enabled border
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: !widget.isShadowBorder
+                ? BorderSide(
+                    color: Theme.of(context).shadowColor,
+                    width: 1.0.w,
+                  )
+                : BorderSide.none,
+          ),
+          // focused error border
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: !widget.isShadowBorder
+                ? BorderSide(
+                    color: Theme.of(context).errorColor,
+                    width: 1.0.w,
+                  )
+                : BorderSide.none,
+          ),
+          // unfocused error border
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderSide: !widget.isShadowBorder
+                ? BorderSide(
+                    color: Theme.of(context).errorColor,
+                    width: 1.0.w,
+                  )
+                : BorderSide.none,
           ),
         ),
       ),

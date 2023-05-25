@@ -127,17 +127,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildSearchTextField() {
-    return Material(
-      elevation: 2,
-      shadowColor: Theme.of(context).dividerColor,
-      borderRadius: BorderRadius.circular(Dimens.margin_64),
-      child: CustomTextField(
-        labelText: "Arama yapın...",
-        prefixIcon: "assets/icons/search-outline.svg",
-        borderRadius: 100,
-        floatingLabelBehavior: false,
-        prefixIconColor: Theme.of(context).primaryColorDark,
-      ),
+    return CustomTextField(
+      isShadowBorder: true,
+      labelText: "Arama yapın...",
+      prefixIcon: "assets/icons/search-outline.svg",
+      borderRadius: 100,
+      floatingLabelBehavior: false,
+      prefixIconColor: Theme.of(context).primaryColorDark,
     );
   }
 }
