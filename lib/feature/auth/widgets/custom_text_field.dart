@@ -153,7 +153,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           //
           // prefix icon settings
           prefixIcon: widget.isSearchBox
-              ? this.isFocused
+              ? this.isFocused || widget.controller!.text.isNotEmpty
                   ? null
                   : IconButton(
                       onPressed: null,
@@ -193,7 +193,18 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 )
               : widget.isSearchBox
                   ? !this.isFocused
-                      ? null
+                      ? widget.controller!.text.isEmpty
+                          ? null
+                          : IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  widget.focusNode!.unfocus();
+                                  widget.controller!.clear();
+                                });
+                              },
+                              icon: SvgPicture.asset(
+                                "assets/icons/close-circle-twotone.svg",
+                              ))
                       : IconButton(
                           onPressed: () {
                             setState(() {
