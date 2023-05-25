@@ -53,6 +53,24 @@ class CustomTextField extends StatefulWidget {
   /// suffix icon eklenmez
   /// Göz iconuna tıklandığında şifre görünür hale gelir
   final bool? isPassword;
+
+  /// Vertical padding opsiyonel
+  /// Harita sayfası arama kutusu için kullanıldı
+  final double verticalPadding;
+
+  /// Özellikler
+  ///
+  /// TextFormField widget'inden inherit edilmiştir.
+  ///
+  /// 1- isPassword: true durumunda değişiklik gerektirmez. Otomatik olarak şifre gizle göster yapar.
+  /// Buton işlevseldir. validator parametresi atanarak kullanıcı adı ve şifre için kontroller eklenebilir.
+  ///
+  /// 2 - isSearchBox: true durumunda değişiklik gerektirmez. Otomatik olarak arama alanı görünümü sağlar.
+  /// Prefix ve suffix icon gerektirmez ve otomatik olarak eklenir.
+  /// suffix icon aktiftir. controller eklenerek arama alanı için kullanılabilir.
+  ///
+  /// 3- isShadowBorder: true durumunda değişiklik gerektirmez. Otomatik olarak gölge efekti ekler.
+  /// false durumunda normal border ekler.
   const CustomTextField(
       {super.key,
       required this.labelText,
@@ -67,7 +85,8 @@ class CustomTextField extends StatefulWidget {
       this.validator,
       this.isShadowBorder = false,
       this.isSearchBox = false,
-      this.focusNode});
+      this.focusNode,
+      this.verticalPadding = Dimens.margin_16});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -128,7 +147,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           fillColor: Theme.of(context).backgroundColor,
           contentPadding: EdgeInsets.symmetric(
             horizontal: Dimens.margin_16.w,
-            vertical: Dimens.margin_16.h,
+            vertical: widget.verticalPadding,
           ),
           //
           //

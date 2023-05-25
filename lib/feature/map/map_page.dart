@@ -152,10 +152,10 @@ class _MapPageState extends State<MapPage> {
   Expanded buildSeachTextField(BuildContext context) {
     return Expanded(
       child: SizedBox(
-        height: Dimens.margin_48.h,
         child: CustomTextField(
           isShadowBorder: true,
           isSearchBox: true,
+          verticalPadding: Dimens.margin_12.h,
           focusNode: _focusNode,
           controller: _searchController,
           labelText: "Haritada arayın...",
