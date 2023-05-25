@@ -15,19 +15,32 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
+  FocusNode _focusNode = FocusNode();
+  TextEditingController _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final _height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          child: Column(
-            children: [buildTopBar(context), buildMap()],
+    return GestureDetector(
+      onTap: () => _focusNode.unfocus(),
+      onVerticalDragStart: (details) => _focusNode.unfocus(),
+      onHorizontalDragStart: (details) => _focusNode.unfocus(),
+      child: Scaffold(
+        body: SafeArea(
+          child: Container(
+            child: Column(
+              children: [buildTopBar(context), buildMap()],
+            ),
           ),
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: buildFloatingActionButtons(context),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: buildFloatingActionButtons(context),
     );
   }
 
@@ -142,11 +155,12 @@ class _MapPageState extends State<MapPage> {
         height: Dimens.margin_48.h,
         child: CustomTextField(
           isShadowBorder: true,
+          isSearchBox: true,
+          focusNode: _focusNode,
+          controller: _searchController,
           labelText: "Haritada arayın...",
-          prefixIcon: "assets/icons/search-outline.svg",
           borderRadius: 100,
           floatingLabelBehavior: false,
-          prefixIconColor: Theme.of(context).primaryColorDark,
         ),
       ),
     );
@@ -161,7 +175,7 @@ class _MapPageState extends State<MapPage> {
             BoxShadow(
               color: Theme.of(context).primaryColorDark.withOpacity(0.2),
               blurRadius: 2,
-              offset: Offset(0, 2),
+              offset: Offset(0, 0),
             ),
           ],
           color: Theme.of(context).backgroundColor,

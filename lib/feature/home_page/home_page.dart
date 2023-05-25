@@ -16,103 +16,115 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  FocusNode _focusNode = FocusNode();
+  TextEditingController _searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final double _width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Theme.of(context).highlightColor,
-      body: Stack(children: [
-        buildBackgroundImage(_width),
-        Container(
-          child: Column(children: [
-            SizedBox(
-              height: Dimens.margin_68.h,
-            ),
-            Container(
-              color: Theme.of(context).backgroundColor.withOpacity(0.5),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: Dimens.margin_74, vertical: Dimens.margin_8),
-                child: Row(children: [
-                  Image.asset(
-                    "assets/images/Ellipse-19.png",
-                    height: Dimens.margin_70.h,
-                    fit: BoxFit.fitHeight,
-                  ),
-                  SizedBox(
-                    width: Dimens.margin_18.w,
-                  ),
-                  Expanded(
-                    child: Text("Ankara Büyükşehir Belediyesi",
-                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: Theme.of(context).primaryColorDark)),
-                  )
-                ]),
+    return GestureDetector(
+      onTap: () => _focusNode.unfocus(),
+      onVerticalDragStart: (details) => _focusNode.unfocus(),
+      onHorizontalDragStart: (details) => _focusNode.unfocus(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Theme.of(context).highlightColor,
+        body: Stack(children: [
+          buildBackgroundImage(_width),
+          Container(
+            child: Column(children: [
+              SizedBox(
+                height: Dimens.margin_68.h,
               ),
-            ),
-            SizedBox(
-              height: Dimens.margin_18.h,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: Dimens.margin_16.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  buildSearchTextField(),
-                  Padding(
-                    padding: EdgeInsets.only(top: Dimens.margin_10.h),
-                    child: Text(
-                      Strings.operations,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineLarge!
-                          .copyWith(color: Theme.of(context).primaryColorDark),
+              Container(
+                color: Theme.of(context).backgroundColor.withOpacity(0.5),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: Dimens.margin_74, vertical: Dimens.margin_8),
+                  child: Row(children: [
+                    Image.asset(
+                      "assets/images/Ellipse-19.png",
+                      height: Dimens.margin_70.h,
+                      fit: BoxFit.fitHeight,
                     ),
-                  ),
-                  SizedBox(
-                    height: Dimens.margin_16.h,
-                  ),
-                  GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      childAspectRatio: 114 / 90,
-                      crossAxisSpacing: Dimens.margin_8.w,
-                      mainAxisSpacing: Dimens.margin_8.h,
+                    SizedBox(
+                      width: Dimens.margin_18.w,
                     ),
-                    itemCount: operationList.length,
-                    itemBuilder: (context, index) {
-                      return OperationGridCard(
-                          isShadowBox: false,
-                          onTap: () {
-                            if (operationList[index]["label"] == "Harita") {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => MapPage()));
-                            } else {
-                              SnackBar snackBar = SnackBar(
-                                duration: Duration(milliseconds: 500),
-                                content: Text(
-                                    "${operationList[index]["label"]} tıklandı."),
-                              );
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
-                            }
-                          },
-                          iconPath: operationList[index]["iconPath"],
-                          label: operationList[index]["label"]);
-                    },
-                  )
-                ],
+                    Expanded(
+                      child: Text("Ankara Büyükşehir Belediyesi",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(
+                                  color: Theme.of(context).primaryColorDark)),
+                    )
+                  ]),
+                ),
               ),
-            )
-          ]),
-        )
-      ]),
+              SizedBox(
+                height: Dimens.margin_18.h,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: Dimens.margin_16.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    buildSearchTextField(),
+                    Padding(
+                      padding: EdgeInsets.only(top: Dimens.margin_10.h),
+                      child: Text(
+                        Strings.operations,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineLarge!
+                            .copyWith(
+                                color: Theme.of(context).primaryColorDark),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Dimens.margin_16.h,
+                    ),
+                    GridView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        childAspectRatio: 114 / 90,
+                        crossAxisSpacing: Dimens.margin_8.w,
+                        mainAxisSpacing: Dimens.margin_8.h,
+                      ),
+                      itemCount: operationList.length,
+                      itemBuilder: (context, index) {
+                        return OperationGridCard(
+                            isShadowBox: false,
+                            onTap: () {
+                              if (operationList[index]["label"] == "Harita") {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MapPage()));
+                              } else {
+                                SnackBar snackBar = SnackBar(
+                                  duration: Duration(milliseconds: 500),
+                                  content: Text(
+                                      "${operationList[index]["label"]} tıklandı."),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              }
+                            },
+                            iconPath: operationList[index]["iconPath"],
+                            label: operationList[index]["label"]);
+                      },
+                    )
+                  ],
+                ),
+              )
+            ]),
+          )
+        ]),
+      ),
     );
   }
 
@@ -129,11 +141,12 @@ class _HomePageState extends State<HomePage> {
   Widget buildSearchTextField() {
     return CustomTextField(
       isShadowBorder: true,
+      isSearchBox: true,
+      focusNode: _focusNode,
+      controller: _searchController,
       labelText: "Arama yapın...",
-      prefixIcon: "assets/icons/search-outline.svg",
       borderRadius: 100,
       floatingLabelBehavior: false,
-      prefixIconColor: Theme.of(context).primaryColorDark,
     );
   }
 }

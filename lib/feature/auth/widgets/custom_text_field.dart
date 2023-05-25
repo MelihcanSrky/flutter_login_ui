@@ -27,6 +27,15 @@ class CustomTextField extends StatefulWidget {
   /// Default olarak normal border
   final bool isShadowBorder;
 
+  /// Arama alanı mı değil mi
+  /// default olarak false
+  /// true ise prefix icon ve suffix icon otomatik olarak eklenir
+  final bool isSearchBox;
+
+  /// focus node
+  /// focus node verilirse focus node ile birlikte çalışır
+  final FocusNode? focusNode;
+
   /// Border Radius
   final double borderRadius;
 
@@ -56,7 +65,9 @@ class CustomTextField extends StatefulWidget {
       this.floatingLabelBehavior = true,
       this.prefixIconColor = CustomColors.primaryBlue,
       this.validator,
-      this.isShadowBorder = false});
+      this.isShadowBorder = false,
+      this.isSearchBox = false,
+      this.focusNode});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -65,10 +76,16 @@ class CustomTextField extends StatefulWidget {
 class _CustomTextFieldState extends State<CustomTextField> {
   late bool isPasswordLock;
   String? _errorText = null;
+  bool isFocused = false;
   @override
   void initState() {
     super.initState();
     isPasswordLock = true;
+    widget.focusNode?.addListener(() {
+      setState(() {
+        isFocused = widget.focusNode!.hasFocus;
+      });
+    });
   }
 
   @override
@@ -81,12 +98,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 BoxShadow(
                   color: Theme.of(context).primaryColorDark.withOpacity(0.2),
                   blurRadius: 2,
-                  offset: Offset(0, 2),
+                  offset: Offset(0, 0),
                 )
               ]
             : null,
       ),
       child: TextFormField(
+        focusNode: widget.focusNode,
         onChanged: widget.validator != null
             ? (value) {
                 setState(() {
@@ -115,16 +133,26 @@ class _CustomTextFieldState extends State<CustomTextField> {
           //
           //
           // prefix icon settings
-          prefixIcon: widget.prefixIcon != null
-              ? IconButton(
-                  iconSize: Dimens.margin_24.h,
-                  onPressed: null,
-                  icon: SvgPicture.asset(
-                    widget.prefixIcon!,
-                    color: widget.prefixIconColor,
-                  ))
-              : null,
-          prefixIconColor: widget.prefixIconColor,
+          prefixIcon: widget.isSearchBox
+              ? this.isFocused
+                  ? null
+                  : IconButton(
+                      onPressed: null,
+                      icon: SvgPicture.asset(
+                        "assets/icons/search-outline.svg",
+                      ))
+              : widget.prefixIcon != null
+                  ? IconButton(
+                      iconSize: Dimens.margin_24.h,
+                      onPressed: null,
+                      icon: SvgPicture.asset(
+                        widget.prefixIcon!,
+                        color: widget.prefixIconColor,
+                      ))
+                  : null,
+          prefixIconColor: widget.isSearchBox
+              ? Theme.of(context).accentColor
+              : widget.prefixIconColor,
           //
           //
           // suffix icon settings
@@ -144,18 +172,41 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     });
                   },
                 )
-              : widget.suffixIcon != null
-                  ? IconButton(
-                      iconSize: Dimens.margin_24.h,
-                      icon: SvgPicture.asset(
-                        widget.suffixIcon!,
-                        color: Theme.of(context).primaryColorLight,
-                      ),
-                      onPressed: widget.suffixIconOnPressed != null
-                          ? widget.suffixIconOnPressed
+              : widget.isSearchBox
+                  ? !this.isFocused
+                      ? null
+                      : IconButton(
+                          onPressed: () {
+                            setState(() {
+                              widget.focusNode!.unfocus();
+                              widget.controller!.clear();
+                            });
+                          },
+                          icon: SvgPicture.asset(
+                            "assets/icons/close-circle-twotone.svg",
+                          ))
+                  : widget.suffixIcon != null
+                      ? IconButton(
+                          iconSize: Dimens.margin_24.h,
+                          onPressed: widget.suffixIconOnPressed != null
+                              ? widget.suffixIconOnPressed
+                              : null,
+                          icon: SvgPicture.asset(
+                            widget.suffixIcon!,
+                            color: Theme.of(context).primaryColorLight,
+                          ))
+                      : widget.suffixIcon != null
+                          ? IconButton(
+                              iconSize: Dimens.margin_24.h,
+                              icon: SvgPicture.asset(
+                                widget.suffixIcon!,
+                                color: Theme.of(context).primaryColorLight,
+                              ),
+                              onPressed: widget.suffixIconOnPressed != null
+                                  ? widget.suffixIconOnPressed
+                                  : null,
+                            )
                           : null,
-                    )
-                  : null,
           suffixIconColor: widget.isPassword != null && widget.isPassword!
               ? isPasswordLock
                   ? Theme.of(context).primaryColorLight
@@ -181,14 +232,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
           // border settings
           // focused border
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(widget.borderRadius),
-            borderSide: !widget.isShadowBorder
-                ? BorderSide(
-                    color: Theme.of(context).primaryColor,
-                    width: 1.0.w,
-                  )
-                : BorderSide.none,
-          ),
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+              borderSide: BorderSide(
+                color: Theme.of(context).primaryColor,
+                width: 1.0.w,
+              )),
           // enabled border
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(widget.borderRadius),

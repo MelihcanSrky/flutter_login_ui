@@ -20,6 +20,8 @@ class SelectCorpPage extends StatefulWidget {
 
 class _SelectCorpPageState extends State<SelectCorpPage> {
   late List mockCorpsList;
+  TextEditingController _searchController = TextEditingController();
+  FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -144,11 +146,12 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
   Widget buildSearchTextField() {
     return CustomTextField(
       isShadowBorder: true,
+      isSearchBox: true,
+      focusNode: _focusNode,
+      controller: _searchController,
       labelText: "Arama yapın...",
-      prefixIcon: "assets/icons/search-outline.svg",
       borderRadius: 100,
       floatingLabelBehavior: false,
-      prefixIconColor: Theme.of(context).primaryColorDark,
     );
   }
 

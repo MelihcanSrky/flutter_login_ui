@@ -34,6 +34,9 @@ class LightTheme extends ApplicationTheme
         /// Border Color
         shadowColor: greyLight.withOpacity(0.5),
 
+        /// GreyDark
+        accentColor: greyDark,
+
         /// Divider Color
         dividerColor: neutralLight,
 
