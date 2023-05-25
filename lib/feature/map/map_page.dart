@@ -31,6 +31,11 @@ class _MapPageState extends State<MapPage> {
       onVerticalDragStart: (details) => _focusNode.unfocus(),
       onHorizontalDragStart: (details) => _focusNode.unfocus(),
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).highlightColor,
+          toolbarHeight: 0,
+          elevation: 0,
+        ),
         body: SafeArea(
           child: Container(
             child: Column(
