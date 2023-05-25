@@ -29,7 +29,7 @@ class CustomIconButton extends StatelessWidget {
             BoxDecoration(borderRadius: BorderRadius.circular(100), boxShadow: [
           BoxShadow(
               color: Theme.of(context).primaryColorDark.withOpacity(0.2),
-              blurRadius: 2,
+              blurRadius: 1,
               offset: Offset(0, 0))
         ]),
         child: ElevatedButton(
