@@ -141,7 +141,7 @@ class _MapPageState extends State<MapPage> {
             icon: "assets/icons/ruler.svg",
           ),
           CustomIconButton(
-            label: "Diğerleri",
+            label: "Diğer İşlemler",
             icon: "assets/icons/more-circle.svg",
           ),
         ],
