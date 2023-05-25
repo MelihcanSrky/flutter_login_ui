@@ -79,6 +79,9 @@ class _MapPageState extends State<MapPage> {
           onPressed: () {},
           child: SvgPicture.asset(
             "assets/icons/send-2.svg",
+            color: Colors.white,
+            height: Dimens.margin_32.h,
+            width: Dimens.margin_32.w,
           )),
     ]);
   }
