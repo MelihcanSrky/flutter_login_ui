@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_netigma_login/extensions/sizes_extensions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -23,7 +24,7 @@ class CustomIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: Dimens.margin_4.w),
+      padding: EdgeInsets.symmetric(horizontal: context.lowValue.w / 2),
       child: Container(
         decoration:
             BoxDecoration(borderRadius: BorderRadius.circular(100), boxShadow: [
@@ -36,9 +37,8 @@ class CustomIconButton extends StatelessWidget {
             style: ButtonStyle(
               elevation: MaterialStateProperty.all(0),
               fixedSize: MaterialStateProperty.all(
-                  Size.fromHeight(Dimens.margin_36.h)),
-              padding: MaterialStateProperty.all(EdgeInsets.symmetric(
-                  horizontal: Dimens.margin_8.w, vertical: Dimens.margin_8.h)),
+                  Size.fromHeight(context.highValue.h * 1.5)),
+              padding: MaterialStateProperty.all(context.paddingLow),
               backgroundColor:
                   MaterialStateProperty.all(Theme.of(context).backgroundColor),
               shape: MaterialStateProperty.all(RoundedRectangleBorder(
@@ -49,7 +49,7 @@ class CustomIconButton extends StatelessWidget {
               children: [
                 SvgPicture.asset(icon),
                 SizedBox(
-                  width: Dimens.margin_4.w,
+                  width: context.lowValue.w / 2,
                 ),
                 Text(
                   label,

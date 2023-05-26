@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_netigma_login/extensions/sizes_extensions.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
 import 'package:flutter_netigma_login/feature/home_page/widgets/operations_grid_card.dart';
-import 'package:flutter_netigma_login/res/dimens.dart';
+
 import 'package:flutter_netigma_login/res/mock_data.dart';
 import 'package:flutter_netigma_login/res/strings.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,21 +35,23 @@ class _HomePageState extends State<HomePage> {
           Container(
             child: Column(children: [
               SizedBox(
-                height: Dimens.margin_68.h,
+                height: (context.highValue.h * 2.5) + context.lowValue.h,
               ),
               Container(
                 color: Theme.of(context).backgroundColor.withOpacity(0.5),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: Dimens.margin_74, vertical: Dimens.margin_8),
+                  padding: EdgeInsets.symmetric(
+                      horizontal:
+                          (context.mediumValue.h * 3) + context.lowValue.h,
+                      vertical: context.lowValue.h),
                   child: Row(children: [
                     Image.asset(
                       "assets/images/Ellipse-19.png",
-                      height: Dimens.margin_70.h,
+                      height: 70.h,
                       fit: BoxFit.fitHeight,
                     ),
                     SizedBox(
-                      width: Dimens.margin_18.w,
+                      width: 18.w,
                     ),
                     Expanded(
                       child: Text("Ankara Büyükşehir Belediyesi",
@@ -62,16 +65,16 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               SizedBox(
-                height: Dimens.margin_18.h,
+                height: 18.h,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: Dimens.margin_16.w),
+                padding: context.paddingNormalHorizontal,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     buildSearchTextField(),
                     Padding(
-                      padding: EdgeInsets.only(top: Dimens.margin_10.h),
+                      padding: EdgeInsets.only(top: 10.h),
                       child: Text(
                         Strings.operations,
                         style: Theme.of(context)
@@ -82,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     SizedBox(
-                      height: Dimens.margin_16.h,
+                      height: context.normalValue.h,
                     ),
                     GridView.builder(
                       physics: NeverScrollableScrollPhysics(),
@@ -91,8 +94,8 @@ class _HomePageState extends State<HomePage> {
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
                         childAspectRatio: 114 / 90,
-                        crossAxisSpacing: Dimens.margin_8.w,
-                        mainAxisSpacing: Dimens.margin_8.h,
+                        crossAxisSpacing: context.lowValue.w,
+                        mainAxisSpacing: context.lowValue.h,
                       ),
                       itemCount: operationList.length,
                       itemBuilder: (context, index) {

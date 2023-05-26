@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_netigma_login/res/dimens.dart';
+import 'package:flutter_netigma_login/extensions/sizes_extensions.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -29,11 +29,11 @@ class OperationGridCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.only(
-          top: Dimens.margin_16.h,
+          top: context.normalValue.h,
         ),
         decoration: isShadowBox
             ? BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimens.margin_6.r),
+                borderRadius: BorderRadius.circular(context.highValue.r / 4),
                 color: Theme.of(context).backgroundColor,
                 boxShadow: [
                     BoxShadow(
@@ -41,30 +41,29 @@ class OperationGridCard extends StatelessWidget {
                     ),
                     BoxShadow(
                       color: Theme.of(context).shadowColor,
-                      blurRadius: Dimens.margin_4,
-                      offset: Offset(0, Dimens.margin_4),
+                      blurRadius: context.lowValue.r / 2,
+                      offset: Offset(0, context.lowValue.h / 2),
                     ),
                   ])
             : BoxDecoration(
                 border: Border.all(color: Theme.of(context).shadowColor),
-                borderRadius: BorderRadius.circular(Dimens.margin_6.r),
+                borderRadius: BorderRadius.circular(context.highValue.r / 4),
                 color: Theme.of(context).backgroundColor,
               ),
         child: Column(children: [
           Container(
-            padding: EdgeInsets.symmetric(
-                horizontal: Dimens.margin_8.w, vertical: Dimens.margin_8.h),
+            padding: context.paddingLow,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimens.margin_6.r),
+                borderRadius: BorderRadius.circular(context.highValue.r / 4),
                 color: Theme.of(context).cardColor),
             child: SvgPicture.asset(
               iconPath,
-              height: Dimens.margin_20.h,
+              height: context.highValue.h / 2 + context.lowValue.h,
               fit: BoxFit.fitHeight,
             ),
           ),
           SizedBox(
-            height: Dimens.margin_8.h,
+            height: context.lowValue.h,
           ),
           Text(label,
               style: Theme.of(context)

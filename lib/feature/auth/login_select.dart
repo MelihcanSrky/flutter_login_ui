@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_netigma_login/extensions/sizes_extensions.dart';
 import 'package:flutter_netigma_login/feature/auth/select_corp.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_button.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
+import 'package:flutter_netigma_login/feature/auth/widgets/divider_text.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/login_desc.dart';
 import 'package:flutter_netigma_login/res/colors.dart';
 import 'package:flutter_netigma_login/res/dimens.dart';
@@ -27,7 +29,8 @@ class _LoginSelectPageState extends State<LoginSelectPage> {
           children: [
             buildBackgroundImage(),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: Dimens.marginDefault.w),
+              padding: EdgeInsets.symmetric(
+                  horizontal: context.mediumValue.w + context.lowValue.w),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -35,18 +38,18 @@ class _LoginSelectPageState extends State<LoginSelectPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       SizedBox(
-                        height: Dimens.margin_88.h,
+                        height: context.mediumValue.h * 4,
                       ),
                       Image.asset(
                         "assets/images/netigma-logo.png",
-                        height: Dimens.margin_48.h,
+                        height: context.highValue.h * 2,
                       ),
                       SizedBox(
-                        height: Dimens.margin_16.h,
+                        height: context.normalValue.h,
                       ),
                       LoginDesc(descText: Strings.loginSelectDesc),
                       SizedBox(
-                        height: Dimens.margin_24.h,
+                        height: context.highValue.h,
                       ),
                       CustomTextField(
                         labelText: Strings.selectCorpToLogin,
@@ -62,22 +65,22 @@ class _LoginSelectPageState extends State<LoginSelectPage> {
                         },
                       ),
                       SizedBox(
-                        height: Dimens.margin_8.h,
+                        height: context.lowValue.h,
                       ),
                       CustomDividerWithText(text: "ya da"),
                       SizedBox(
-                        height: Dimens.margin_8.h,
+                        height: context.lowValue.h,
                       ),
                       CustomTextField(
                         labelText: Strings.corpCodeToLogin,
                         prefixIcon: "assets/icons/code-circle.svg",
                       ),
                       SizedBox(
-                        height: Dimens.margin_8.h,
+                        height: context.lowValue.h,
                       ),
                       CustomDividerWithText(text: "ya da"),
                       SizedBox(
-                        height: Dimens.margin_8.h,
+                        height: context.lowValue.h,
                       ),
                       CustomTextField(
                         labelText: Strings.corpAdressToLogin,
@@ -85,7 +88,7 @@ class _LoginSelectPageState extends State<LoginSelectPage> {
                         suffixIcon: "assets/icons/scan-barcode.svg",
                       ),
                       SizedBox(
-                        height: Dimens.margin_24.h,
+                        height: context.highValue.h,
                       ),
                       CustomButton(
                         onPressed: () {},
@@ -94,10 +97,10 @@ class _LoginSelectPageState extends State<LoginSelectPage> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.only(bottom: Dimens.margin_18.h),
+                    padding: EdgeInsets.only(bottom: 18.h),
                     child: Image.asset(
                       "assets/images/netcad-logo.png",
-                      height: Dimens.margin_24.h,
+                      height: context.highValue.h,
                     ),
                   )
                 ],
@@ -118,53 +121,6 @@ class _LoginSelectPageState extends State<LoginSelectPage> {
         width: _width,
       ),
       bottom: 0,
-    );
-  }
-}
-
-class CustomDividerWithText extends StatelessWidget {
-  final String text;
-  const CustomDividerWithText({
-    super.key,
-    required this.text,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: Dimens.margin_10.w),
-            child: Divider(
-              height: 2.h,
-              thickness: 1.h,
-              color: Theme.of(context).dividerColor,
-            ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: Dimens.margin_10.h),
-          child: Text(
-            text,
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .copyWith(color: Theme.of(context).primaryColorDark),
-          ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: Dimens.margin_10.w),
-            child: Divider(
-              height: 2.h,
-              thickness: 1.h,
-              color: Theme.of(context).dividerColor,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_netigma_login/extensions/login_validators.dart';
+import 'package:flutter_netigma_login/extensions/sizes_extensions.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_button.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/login_desc.dart';
@@ -37,7 +38,8 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           buildBackgroundImage(),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: Dimens.marginDefault.w),
+            padding: EdgeInsets.symmetric(
+                horizontal: context.mediumValue.w + context.lowValue.w),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -45,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       SizedBox(
-                        height: Dimens.margin_60.h,
+                        height: context.highValue.h * 2.5,
                       ),
                       Text(
                         Strings.login,
@@ -54,18 +56,18 @@ class _LoginPageState extends State<LoginPage> {
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(
-                        height: Dimens.margin_16.h,
+                        height: context.normalValue.h,
                       ),
                       LoginDesc(descText: Strings.loginDesc),
                       SizedBox(
-                        height: Dimens.margin_24.h,
+                        height: context.highValue.h,
                       ),
                       CustomTextField(
                         labelText: Strings.userName,
                         validator: validateUserName,
                       ),
                       SizedBox(
-                        height: Dimens.margin_12.h,
+                        height: context.highValue.h / 2,
                       ),
                       CustomTextField(
                         labelText: Strings.password,
@@ -74,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       buildRememberMe(),
                       SizedBox(
-                        height: Dimens.margin_24.h,
+                        height: context.highValue.h,
                       ),
                       CustomButton(
                         onPressed: () {
@@ -100,7 +102,8 @@ class _LoginPageState extends State<LoginPage> {
   Padding buildPoweredBy() {
     return Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: Dimens.margin_14.w, vertical: Dimens.margin_14.h),
+          horizontal: context.mediumValue.w - context.lowValue.w,
+          vertical: context.mediumValue.h - context.lowValue.h),
       child: Text(Strings.poweredBy,
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 color: Theme.of(context).primaryColorDark,
@@ -125,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: Dimens.margin_8.w),
+          padding: context.paddingNormalHorizontal,
           child: Text(
             Strings.rememberMe,
             style: Theme.of(context).textTheme.labelMedium!.copyWith(

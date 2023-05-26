@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_netigma_login/extensions/sizes_extensions.dart';
 import 'package:flutter_netigma_login/res/dimens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,7 +19,8 @@ class _CustomButtonState extends State<CustomButton> {
       onPressed: widget.onPressed,
       child: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: Dimens.margin_12.w, vertical: Dimens.margin_12.h),
+            horizontal: context.highValue.w / 2,
+            vertical: context.highValue.h / 2),
         child: Text(widget.text,
             style: Theme.of(context)
                 .textTheme

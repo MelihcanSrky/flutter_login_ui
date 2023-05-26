@@ -30,8 +30,7 @@ class _CustomTextButtonState extends State<CustomTextButton> {
         style: TextButton.styleFrom(
             elevation: 0,
             alignment: Alignment.centerLeft,
-            padding: EdgeInsets.symmetric(
-                horizontal: 0, vertical: Dimens.margin_14.h)),
+            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 14.h)),
         onPressed: widget.onPressed,
         icon: SvgPicture.asset(widget.icon,
             color: Theme.of(context).primaryColor),

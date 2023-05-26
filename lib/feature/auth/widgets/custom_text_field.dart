@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_netigma_login/extensions/login_validators.dart';
+import 'package:flutter_netigma_login/extensions/sizes_extensions.dart';
 import 'package:flutter_netigma_login/res/typography.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -79,14 +80,14 @@ class CustomTextField extends StatefulWidget {
       this.isPassword,
       this.controller,
       this.suffixIconOnPressed,
-      this.borderRadius = Dimens.borderRadiusDefault,
+      this.borderRadius = 12,
       this.floatingLabelBehavior = true,
       this.prefixIconColor = CustomColors.primaryBlue,
       this.validator,
       this.isShadowBorder = false,
       this.isSearchBox = false,
       this.focusNode,
-      this.verticalPadding = Dimens.margin_16});
+      this.verticalPadding = 16});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -146,7 +147,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           filled: true,
           fillColor: Theme.of(context).backgroundColor,
           contentPadding: EdgeInsets.symmetric(
-            horizontal: Dimens.margin_16.w,
+            horizontal: context.normalValue,
             vertical: widget.verticalPadding,
           ),
           //
@@ -162,7 +163,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       ))
               : widget.prefixIcon != null
                   ? IconButton(
-                      iconSize: Dimens.margin_24.h,
+                      iconSize: context.highValue.h,
                       onPressed: null,
                       icon: SvgPicture.asset(
                         widget.prefixIcon!,
@@ -177,7 +178,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           // suffix icon settings
           suffixIcon: widget.isPassword != null && widget.isPassword!
               ? IconButton(
-                  iconSize: Dimens.margin_24.h,
+                  iconSize: context.highValue.h,
                   icon: isPasswordLock
                       ? SvgPicture.asset(
                           "assets/icons/eye-slash.svg",
@@ -217,7 +218,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                           ))
                   : widget.suffixIcon != null
                       ? IconButton(
-                          iconSize: Dimens.margin_24.h,
+                          iconSize: context.highValue.h,
                           onPressed: widget.suffixIconOnPressed != null
                               ? widget.suffixIconOnPressed
                               : null,
@@ -227,7 +228,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                           ))
                       : widget.suffixIcon != null
                           ? IconButton(
-                              iconSize: Dimens.margin_24.h,
+                              iconSize: context.highValue.h,
                               icon: SvgPicture.asset(
                                 widget.suffixIcon!,
                                 color: Theme.of(context).primaryColorLight,

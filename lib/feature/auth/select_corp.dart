@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_netigma_login/extensions/sizes_extensions.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_button.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
 import 'package:flutter_netigma_login/res/mock_data.dart';
@@ -48,11 +49,11 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
         resizeToAvoidBottomInset: false,
         appBar: buildAppbar(_height),
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: Dimens.margin_16.w),
+          padding: context.paddingNormalHorizontal,
           child: Column(
             children: [
               SizedBox(
-                height: Dimens.margin_16.h,
+                height: context.normalValue.h,
               ),
               buildSearchTextField(),
               Row(
@@ -71,7 +72,7 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
                 ],
               ),
               SizedBox(
-                height: Dimens.margin_8.h,
+                height: context.lowValue.h,
               ),
               buildListView()
             ],
@@ -99,7 +100,7 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
       child: ListTile(
         leading: Container(
           padding: EdgeInsets.symmetric(
-              horizontal: Dimens.margin_8.w, vertical: Dimens.margin_8.h),
+              horizontal: context.lowValue.w, vertical: context.lowValue.h),
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -109,16 +110,16 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
                 ),
                 BoxShadow(
                   color: Theme.of(context).shadowColor,
-                  blurRadius: Dimens.margin_4,
-                  offset: Offset(0, Dimens.margin_4),
+                  blurRadius: context.lowValue.r / 2,
+                  offset: Offset(0, context.lowValue.h / 2),
                 ),
                 BoxShadow(
                   color: Theme.of(context).shadowColor,
-                  blurRadius: Dimens.margin_4,
-                  offset: Offset(0, Dimens.margin_4),
+                  blurRadius: context.lowValue.r / 2,
+                  offset: Offset(0, context.lowValue.h / 2),
                 ),
               ],
-              borderRadius: BorderRadius.circular(Dimens.margin_8.r),
+              borderRadius: BorderRadius.circular(context.lowValue.r),
               color: Theme.of(context).cardColor),
           child: SvgPicture.asset(
             "assets/icons/location.svg",

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_netigma_login/extensions/sizes_extensions.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
 import 'package:flutter_netigma_login/feature/map/widgets/custom_icon_button.dart';
 import 'package:flutter_netigma_login/res/dimens.dart';
@@ -74,11 +75,11 @@ class _MapPageState extends State<MapPage> {
           onPressed: () {},
           child: SvgPicture.asset(
             "assets/icons/map.svg",
-            height: Dimens.margin_32.h,
-            width: Dimens.margin_32.w,
+            height: (context.normalValue * 2).h,
+            width: (context.normalValue * 2).w,
           )),
       SizedBox(
-        height: Dimens.margin_8.h,
+        height: (context.lowValue).h,
       ),
       FloatingActionButton(
           backgroundColor: Theme.of(context).primaryColor,
@@ -86,8 +87,8 @@ class _MapPageState extends State<MapPage> {
           child: SvgPicture.asset(
             "assets/icons/send-2.svg",
             color: Colors.white,
-            height: Dimens.margin_32.h,
-            width: Dimens.margin_32.w,
+            height: (context.normalValue * 2).h,
+            width: (context.normalValue * 2).w,
           )),
     ]);
   }
@@ -99,29 +100,27 @@ class _MapPageState extends State<MapPage> {
         BoxShadow(
           color: Theme.of(context).primaryColorDark,
           blurRadius: 4,
-          offset: Offset(0, Dimens.margin_4),
+          offset: Offset(0, (context.lowValue / 2).h),
         ),
       ]),
-      padding:
-          EdgeInsets.only(top: Dimens.margin_16.h, bottom: Dimens.margin_8.h),
+      padding: EdgeInsets.only(
+          top: context.normalValue.h, bottom: context.lowValue.h),
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: Dimens.margin_16.w,
-            ),
+            padding: context.paddingNormalHorizontal,
             child: Row(
               children: [
                 buildBackButton(context),
                 SizedBox(
-                  width: Dimens.margin_8.w,
+                  width: context.lowValue.w,
                 ),
                 buildSeachTextField(context)
               ],
             ),
           ),
           SizedBox(
-            height: Dimens.margin_8.h,
+            height: context.lowValue.h,
           ),
           BuildCardList()
         ],
@@ -131,10 +130,10 @@ class _MapPageState extends State<MapPage> {
 
   Container BuildCardList() {
     return Container(
-      height: Dimens.margin_56.h - 4.h,
+      height: context.highValue * 2 + context.lowValue.h,
       child: ListView(
         padding: EdgeInsets.symmetric(
-            vertical: Dimens.margin_8.h, horizontal: Dimens.margin_12.w),
+            vertical: context.lowValue.h, horizontal: context.highValue.w / 2),
         scrollDirection: Axis.horizontal,
         children: [
           CustomIconButton(
@@ -164,7 +163,7 @@ class _MapPageState extends State<MapPage> {
         child: CustomTextField(
           isShadowBorder: true,
           isSearchBox: true,
-          verticalPadding: Dimens.margin_12.h,
+          verticalPadding: context.highValue.h / 2,
           focusNode: _focusNode,
           controller: _searchController,
           labelText: "Haritada arayın...",
@@ -177,8 +176,8 @@ class _MapPageState extends State<MapPage> {
 
   Container buildBackButton(BuildContext context) {
     return Container(
-      width: Dimens.margin_48.w,
-      height: Dimens.margin_48.h,
+      width: context.highValue.w * 2,
+      height: context.highValue.h * 2,
       decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(

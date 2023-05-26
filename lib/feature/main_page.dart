@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_netigma_login/extensions/sizes_extensions.dart';
 import 'package:flutter_netigma_login/feature/home_page/home_page.dart';
 import 'package:flutter_netigma_login/feature/home_page/widgets/nav_bar.dart';
 import 'package:flutter_netigma_login/res/dimens.dart';
@@ -18,15 +19,15 @@ class MainPage extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Theme.of(context).shadowColor,
-              blurRadius: Dimens.margin_4,
-              offset: Offset(0, -Dimens.margin_4),
+              blurRadius: context.lowValue / 2,
+              offset: Offset(0, -context.lowValue / 2),
             ),
           ],
         ),
         alignment: Alignment.topCenter,
-        height: Dimens.margin_84.h,
+        height: (context.highValue / 2) * 7,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: Dimens.margin_16.w),
+          padding: context.paddingNormalHorizontal,
           child: NavBar(),
         ),
       ),
