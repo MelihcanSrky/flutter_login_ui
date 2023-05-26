@@ -3,10 +3,10 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_netigma_login/extensions/sizes_extensions.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
 import 'package:flutter_netigma_login/feature/map/widgets/custom_icon_button.dart';
-import 'package:flutter_netigma_login/res/dimens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -18,6 +18,8 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   FocusNode _focusNode = FocusNode();
   TextEditingController _searchController = TextEditingController();
+  int? selectedIndex = -1;
+  String? selectedLayer;
 
   @override
   void initState() {
@@ -37,16 +39,69 @@ class _MapPageState extends State<MapPage> {
           toolbarHeight: 0,
           elevation: 0,
         ),
-        body: SafeArea(
-          bottom: false,
-          child: Container(
-            child: Column(
-              children: [buildTopBar(context), buildMap()],
+        body: Stack(children: [
+          SafeArea(
+            bottom: false,
+            child: Container(
+              child: Column(
+                children: [buildTopBar(context), buildMap()],
+              ),
             ),
           ),
-        ),
+          if (selectedIndex != -1) buildSlidingUpPanel(context)
+        ]),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: buildFloatingActionButtons(context),
+      ),
+    );
+  }
+
+  SlidingUpPanel buildSlidingUpPanel(BuildContext context) {
+    return SlidingUpPanel(
+      maxHeight: 250,
+      backdropEnabled: true,
+      backdropOpacity: 0,
+      onPanelClosed: () {
+        setState(() {
+          selectedIndex = -1;
+        });
+      },
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(context.highValue),
+          topRight: Radius.circular(context.highValue)),
+      panel: Container(
+        height: 200.h,
+        child: Center(
+          child: Text(selectedLayer ?? ""),
+        ),
+      ),
+      padding: context.paddingNormalHorizontal,
+      header: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "This is the header : " + selectedLayer.toString() ?? "",
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      selectedIndex = -1;
+                    });
+                  },
+                  icon: SvgPicture.asset(
+                    "assets/icons/close-circle-twotone.svg",
+                  ))
+            ],
+          ),
+          Divider(
+            height: 1.h,
+            thickness: 1.h,
+            color: Theme.of(context).dividerColor,
+          ),
+        ],
       ),
     );
   }
@@ -136,21 +191,53 @@ class _MapPageState extends State<MapPage> {
             vertical: context.lowValue.h, horizontal: context.highValue.w / 2),
         scrollDirection: Axis.horizontal,
         children: [
-          CustomIconButton(
+          CustomIconButton.radio(
             label: "Katman",
             icon: "assets/icons/layer.svg",
+            value: 0,
+            groupValue: selectedIndex,
+            onPressed: () {
+              setState(() {
+                selectedIndex = 0;
+                selectedLayer = "Katman";
+              });
+            },
           ),
-          CustomIconButton(
+          CustomIconButton.radio(
             label: "Limit Bul",
             icon: "assets/icons/format-square.svg",
+            value: 1,
+            groupValue: selectedIndex,
+            onPressed: () {
+              setState(() {
+                selectedIndex = 1;
+                selectedLayer = "Limit Bul";
+              });
+            },
           ),
-          CustomIconButton(
+          CustomIconButton.radio(
             label: "Ölçüm",
             icon: "assets/icons/ruler.svg",
+            value: 2,
+            groupValue: selectedIndex,
+            onPressed: () {
+              setState(() {
+                selectedIndex = 2;
+                selectedLayer = "Ölçüm";
+              });
+            },
           ),
-          CustomIconButton(
+          CustomIconButton.radio(
             label: "Diğer İşlemler",
             icon: "assets/icons/more-circle.svg",
+            value: 3,
+            groupValue: selectedIndex,
+            onPressed: () {
+              setState(() {
+                selectedIndex = 3;
+                selectedLayer = "Diğer İşlemler";
+              });
+            },
           ),
         ],
       ),
