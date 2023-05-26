@@ -37,6 +37,7 @@ class _MapPageState extends State<MapPage> {
           elevation: 0,
         ),
         body: SafeArea(
+          bottom: false,
           child: Container(
             child: Column(
               children: [buildTopBar(context), buildMap()],

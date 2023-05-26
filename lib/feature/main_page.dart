@@ -11,7 +11,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: HomePage(),
+      body: SafeArea(top: false, child: HomePage()),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).backgroundColor,
