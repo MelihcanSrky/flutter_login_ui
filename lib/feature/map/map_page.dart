@@ -18,12 +18,17 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   FocusNode _focusNode = FocusNode();
   TextEditingController _searchController = TextEditingController();
+  PanelController _panelController = PanelController();
   int? selectedIndex = -1;
   String? selectedLayer;
 
   @override
   void initState() {
     super.initState();
+  }
+
+  void setPanelState() {
+    selectedIndex != -1 ? _panelController.open() : _panelController.close();
   }
 
   @override
@@ -40,15 +45,17 @@ class _MapPageState extends State<MapPage> {
           elevation: 0,
         ),
         body: Stack(children: [
-          SafeArea(
-            bottom: false,
-            child: Container(
-              child: Column(
-                children: [buildTopBar(context), buildMap()],
+          buildSlidingUpPanel(
+            context,
+            SafeArea(
+              bottom: false,
+              child: Container(
+                child: Column(
+                  children: [buildTopBar(context), buildMap()],
+                ),
               ),
             ),
-          ),
-          if (selectedIndex != -1) buildSlidingUpPanel(context)
+          )
         ]),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: buildFloatingActionButtons(context),
@@ -56,9 +63,11 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-  SlidingUpPanel buildSlidingUpPanel(BuildContext context) {
+  SlidingUpPanel buildSlidingUpPanel(BuildContext context, Widget child) {
     return SlidingUpPanel(
       maxHeight: 250,
+      minHeight: 0,
+      controller: _panelController,
       backdropEnabled: true,
       backdropOpacity: 0,
       onPanelClosed: () {
@@ -75,6 +84,7 @@ class _MapPageState extends State<MapPage> {
           child: Text(selectedLayer ?? ""),
         ),
       ),
+      body: child,
       padding: context.paddingNormalHorizontal,
       header: Column(
         children: [
@@ -89,6 +99,7 @@ class _MapPageState extends State<MapPage> {
                   onPressed: () {
                     setState(() {
                       selectedIndex = -1;
+                      setPanelState();
                     });
                   },
                   icon: SvgPicture.asset(
@@ -191,6 +202,11 @@ class _MapPageState extends State<MapPage> {
             vertical: context.lowValue.h, horizontal: context.highValue.w / 2),
         scrollDirection: Axis.horizontal,
         children: [
+          CustomIconButton(
+            label: "label",
+            icon: "assets/icons/layer.svg",
+            onPressed: () {},
+          ),
           CustomIconButton.radio(
             label: "Katman",
             icon: "assets/icons/layer.svg",
@@ -200,6 +216,7 @@ class _MapPageState extends State<MapPage> {
               setState(() {
                 selectedIndex = 0;
                 selectedLayer = "Katman";
+                setPanelState();
               });
             },
           ),
@@ -212,6 +229,7 @@ class _MapPageState extends State<MapPage> {
               setState(() {
                 selectedIndex = 1;
                 selectedLayer = "Limit Bul";
+                setPanelState();
               });
             },
           ),
@@ -224,6 +242,7 @@ class _MapPageState extends State<MapPage> {
               setState(() {
                 selectedIndex = 2;
                 selectedLayer = "Ölçüm";
+                setPanelState();
               });
             },
           ),
@@ -236,6 +255,7 @@ class _MapPageState extends State<MapPage> {
               setState(() {
                 selectedIndex = 3;
                 selectedLayer = "Diğer İşlemler";
+                setPanelState();
               });
             },
           ),
