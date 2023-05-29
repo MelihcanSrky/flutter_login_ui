@@ -1,11 +1,10 @@
+import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_netigma_login/extensions/sizes_extensions.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
-import 'package:flutter_netigma_login/feature/map/widgets/custom_icon_button.dart';
+import 'package:flutter_netigma_login/feature/map/widgets/map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class MapPage extends StatefulWidget {
@@ -39,26 +38,27 @@ class _MapPageState extends State<MapPage> {
       onVerticalDragStart: (details) => _focusNode.unfocus(),
       onHorizontalDragStart: (details) => _focusNode.unfocus(),
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).highlightColor,
-          toolbarHeight: 0,
-          elevation: 0,
-        ),
-        body: Stack(children: [
-          buildSlidingUpPanel(
-            context,
-            SafeArea(
-              bottom: false,
-              child: Container(
+        body: buildSlidingUpPanel(
+          context,
+          SafeArea(
+            bottom: false,
+            child: Scaffold(
+              appBar: AppBar(
+                backgroundColor: Theme.of(context).highlightColor,
+                toolbarHeight: 0,
+                elevation: 0,
+              ),
+              body: Container(
                 child: Column(
-                  children: [buildTopBar(context), buildMap()],
+                  children: [buildTopBar(context), MapWidget()],
                 ),
               ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.endFloat,
+              floatingActionButton: buildFloatingActionButtons(context),
             ),
-          )
-        ]),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        floatingActionButton: buildFloatingActionButtons(context),
+          ),
+        ),
       ),
     );
   }
@@ -111,23 +111,6 @@ class _MapPageState extends State<MapPage> {
             height: 1.h,
             thickness: 1.h,
             color: Theme.of(context).dividerColor,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Expanded buildMap() {
-    return Expanded(
-      child: FlutterMap(
-        options: MapOptions(
-          center: LatLng(51.5, -0.09),
-          zoom: 13.0,
-        ),
-        children: [
-          TileLayer(
-            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-            userAgentPackageName: 'com.example.app',
           ),
         ],
       ),
@@ -202,11 +185,6 @@ class _MapPageState extends State<MapPage> {
             vertical: context.lowValue.h, horizontal: context.highValue.w / 2),
         scrollDirection: Axis.horizontal,
         children: [
-          CustomIconButton(
-            label: "label",
-            icon: "assets/icons/layer.svg",
-            onPressed: () {},
-          ),
           CustomIconButton.radio(
             label: "Katman",
             icon: "assets/icons/layer.svg",
