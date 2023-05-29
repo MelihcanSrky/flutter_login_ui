@@ -1,8 +1,8 @@
+import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_netigma_login/extensions/sizes_extensions.dart';
 import 'package:flutter_netigma_login/feature/auth/select_corp.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_button.dart';
-import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/divider_text.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/login_desc.dart';
 import 'package:flutter_netigma_login/res/colors.dart';

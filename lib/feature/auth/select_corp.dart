@@ -1,7 +1,7 @@
+import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_netigma_login/extensions/sizes_extensions.dart';
 import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_button.dart';
-import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
 import 'package:flutter_netigma_login/res/mock_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';

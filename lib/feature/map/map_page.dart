@@ -1,7 +1,6 @@
 import 'package:custom_widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_netigma_login/extensions/sizes_extensions.dart';
-import 'package:flutter_netigma_login/feature/auth/widgets/custom_text_field.dart';
 import 'package:flutter_netigma_login/feature/map/widgets/map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -108,8 +107,8 @@ class _MapPageState extends State<MapPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                width: 60,
-                height: 5,
+                width: 60.w,
+                height: 5.h,
                 decoration: BoxDecoration(
                     color: Theme.of(context).dividerColor,
                     borderRadius: BorderRadius.all(Radius.circular(12.0))),
