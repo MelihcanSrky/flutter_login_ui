@@ -37,8 +37,8 @@ class _MapPageState extends State<MapPage> {
       onTap: () => _focusNode.unfocus(),
       onVerticalDragStart: (details) => _focusNode.unfocus(),
       onHorizontalDragStart: (details) => _focusNode.unfocus(),
-      child: Scaffold(
-        body: buildSlidingUpPanel(
+      child: Material(
+        child: buildSlidingUpPanel(
           context,
           SafeArea(
             bottom: false,
@@ -50,7 +50,12 @@ class _MapPageState extends State<MapPage> {
               ),
               body: Container(
                 child: Column(
-                  children: [buildTopBar(context), MapWidget()],
+                  children: [
+                    buildTopBar(context),
+                    MapWidget(
+                      focusNode: _focusNode,
+                    )
+                  ],
                 ),
               ),
               floatingActionButtonLocation:
@@ -92,7 +97,7 @@ class _MapPageState extends State<MapPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "This is the header : " + selectedLayer.toString() ?? "",
+                "This is the header : " + selectedLayer.toString(),
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
               IconButton(
@@ -179,7 +184,7 @@ class _MapPageState extends State<MapPage> {
 
   Container BuildCardList() {
     return Container(
-      height: context.highValue * 2 + context.lowValue.h,
+      height: context.highValue * 2 + context.lowValue.h / 2,
       child: ListView(
         padding: EdgeInsets.symmetric(
             vertical: context.lowValue.h, horizontal: context.highValue.w / 2),

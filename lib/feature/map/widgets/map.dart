@@ -3,8 +3,10 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 class MapWidget extends StatelessWidget {
+  final FocusNode? focusNode;
   const MapWidget({
     super.key,
+    this.focusNode,
   });
 
   @override
@@ -14,6 +16,9 @@ class MapWidget extends StatelessWidget {
         options: MapOptions(
           center: LatLng(51.5, -0.09),
           zoom: 13.0,
+          onPositionChanged: (position, hasGesture) {
+            focusNode?.unfocus();
+          },
         ),
         children: [
           TileLayer(

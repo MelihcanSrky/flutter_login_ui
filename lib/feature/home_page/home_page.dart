@@ -150,6 +150,7 @@ class _HomePageState extends State<HomePage> {
       labelText: "Arama yapın...",
       borderRadius: 100,
       floatingLabelBehavior: false,
+      verticalPadding: context.highValue.h / 2,
     );
   }
 }

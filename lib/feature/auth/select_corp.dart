@@ -153,6 +153,7 @@ class _SelectCorpPageState extends State<SelectCorpPage> {
       labelText: "Arama yapın...",
       borderRadius: 100,
       floatingLabelBehavior: false,
+      verticalPadding: context.highValue.h / 2,
     );
   }
 
