@@ -90,14 +90,37 @@ class _MapPageState extends State<MapPage> {
         ),
       ),
       body: child,
+      header: buildPanelHeader(context),
+    );
+  }
+
+  Container buildPanelHeader(BuildContext context) {
+    return Container(
+      width: context.width,
       padding: context.paddingNormalHorizontal,
-      header: Column(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          SizedBox(
+            height: context.lowValue,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                width: 60,
+                height: 5,
+                decoration: BoxDecoration(
+                    color: Theme.of(context).dividerColor,
+                    borderRadius: BorderRadius.all(Radius.circular(12.0))),
+              ),
+            ],
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "This is the header : " + selectedLayer.toString(),
+                "Harita " + selectedLayer.toString() + " Seç",
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
               IconButton(
